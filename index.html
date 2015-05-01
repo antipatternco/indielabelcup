@@ -72,8 +72,8 @@ Physics(function (world) {
     // constrain objects to these bounds
     edgeBounce = Physics.behavior('edge-collision-detection', {
         aabb: viewportBounds
-        ,restitution: 0.99
-        ,cof: 0.8
+        ,restitution: 0.4
+        ,cof: 0.3
     });
 
     // resize events
@@ -86,34 +86,51 @@ Physics(function (world) {
 
     }, true);
 
-    // create some bodies
-    var x = Physics.body('circle', {
-        x: renderer.width * 0.4
-        ,y: renderer.height * 0.3
+    var goal1 = Physics.body('rectangle', {
+        treatment: 'static'
+        ,x: 0
+        ,y: renderer.height * 0.5
         ,vx: 0.3
+        ,width: 10
+        ,height: 150
+        ,styles: {
+            fillStyle: '#cb4b16'
+        }
+        ,label: "goal1"
+    });
+
+    var goal2 = Physics.body('rectangle', {
+        treatment: 'static'
+        ,x: renderer.width
+        ,y: renderer.height * 0.5
+        ,vx: 0.3
+        ,width: 10
+        ,height: 150
+        ,styles: {
+            fillStyle: '#cb4b16'
+        }
+        ,label: "goal2"
+    });
+    world.add(goal1);
+    world.add(goal2);
+
+    // ball
+    var x = Physics.body('circle', {
+        x: renderer.width * 0.5
+        ,y: renderer.height * 0.5
+        ,vx: 0
         ,radius: 30
         ,styles: {
             fillStyle: '#cb4b16'
             ,angleIndicator: '#72240d'
         }
-        ,mass: 0.1
+        ,mass: 1
+        ,restitution: 0.5
+        ,label: "ball"
     });
+    world.add(x);
 
-    // var y = Physics.body('circle', {
-    //     x: renderer.width * 0.7
-    //     ,y: renderer.height * 0.3
-    //     ,vx: -0.3
-    //     ,radius: 40
-    //     ,styles: {
-    //         fillStyle: '#6c71c4'
-    //         ,angleIndicator: '#3b3e6b'
-    //     }
-    // });
-
-    var boxes = [x];
-    world.add(boxes);
-
-    var player1 = Physics.body('circle', {
+     var player1 = Physics.body('circle', {
         x: renderer.width * 0.9
         ,y: renderer.height * 0.3
         ,radius: 40
@@ -122,6 +139,7 @@ Physics(function (world) {
             ,angleIndicator: '#3b3e6b'
         }
         ,mass: 1
+        ,restitution: 0.1,
     });
 
     // Not a hack
@@ -229,50 +247,28 @@ Physics(function (world) {
         ,mass: 1
     });
 
-  // Not a hack
     player2.view = new Image();
     player2.view.src = '1999.png';
-    world.add(player2);
-
-    // Not a hack
     player3.view = new Image();
     player3.view.src = '2000.png';
-    world.add(player3);
-
-    // Not a hack
     player4.view = new Image();
     player4.view.src = '2001.png';
-    world.add(player4);
-
-    // Not a hack
     player5.view = new Image();
     player5.view.src = '2002.png';
-    world.add(player5);
-
-    // Not a hack
     player6.view = new Image();
     player6.view.src = '2003.png';
-    world.add(player6);
-
-    // Not a hack
     player7.view = new Image();
     player7.view.src = '2004.png';
-    world.add(player7);
-
-    // Not a hack
     player8.view = new Image();
     player8.view.src = '2005.png';
-    world.add(player8);
-
-    // Not a hack
     player9.view = new Image();
     player9.view.src = '2006.png';
-    world.add(player9);
-
-    // Not a hack
     player10.view = new Image();
     player10.view.src = '2007.png';
-    world.add(player10);
+    
+    var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10];
+    world.add(players);
+
     // // add some fun interaction
     // var attractor = Physics.behavior('attractor', {
     //     order: 0,
@@ -295,23 +291,54 @@ Physics(function (world) {
 
     // add things to the world
     world.add([
-        Physics.behavior('interactive', { el: renderer.container })
-        ,edgeBounce
+        edgeBounce
     ]);
 
-    var accel = Physics.behavior('constant-acceleration').applyTo( boxes );
+    var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
+    world.add(tch);
+
+    var accel = Physics.behavior('constant-acceleration').applyTo( x );
     world.add(accel);
 
-    var resp = Physics.behavior('body-impulse-response').applyTo( boxes );
+    var resp = Physics.behavior('body-impulse-response').applyTo( players );
     world.add(resp);
 
     world.add( Physics.behavior('body-collision-detection') );
+
     world.add( Physics.behavior('sweep-prune') );
 
     // subscribe to ticker to advance the simulation
     Physics.util.ticker.on(function( time ) {
         world.step( time );
     });
+
+
+    // query to find a collision between a body with label "bullet" and a body with label "box"
+var query = Physics.query({
+    $or: [
+        { bodyA: { label: 'ball' }, bodyB: { label: 'goal1' } }
+        ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal1' } }
+        ,{ bodyA: { label: 'ball' }, bodyB: { label: 'goal2' } }
+        ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal2' } }
+    ]
+});
+
+// monitor collisions
+world.on('collisions:detected', function( data, e ){
+    // find the first collision that matches the query
+    //console.log(data.collisions);
+    var found = Physics.util.find( data.collisions, query );
+    if ( found ){
+        // SOMEONE SCORED A GOAL!!!!!
+        //console.log('ball went into: ' + (found.bodyB.label == "ball" ? found.bodyA.label : found.bodyB.label));
+        // move ball back to centre spot
+        x.state.pos.x = renderer.width * 0.5;
+        x.state.pos.y = renderer.height * 0.5;
+        x.state.vel.set(0, 0);
+    }
+});
+
+
 });
     </script>
   </body>
