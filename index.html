@@ -25,6 +25,7 @@
       body, html {
         height: 100%;
         width: 100%;
+        overflow: hidden;
       }
 
       h1, h2 {
@@ -43,6 +44,9 @@
     <h2>31 May</h2>
     <h1>Indie Label Cup</h1>
     <script>
+    document.ontouchmove = function(event){
+    event.preventDefault();
+}
       //
 // Simple example of bouncing balls
 //
