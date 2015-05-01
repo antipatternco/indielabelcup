@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Indie Label Cup</title>
+    <meta property="og:url" content="http://solidsteel.net"/>
+    <meta property="og:title" content="Solid Steel Radio"/>
+    <meta property="og:image" content="http://solidsteel.net/images/fb.jpg"/>
+    <meta property="og:site_name" content="Solid Steel Radio"/>
+    <meta property="og:description" content="Launched by Ninja Tune founding duo Coldcut (Matt Black and Jonathan More) in 1988 on the then pirate radio station KISS FM, Solid Steel is now possibly the longest running mix show in the world. Since 1999, the show has been available online, making it a pioneer of the internet mix-show phenomenon. Constantly evolving, the show embraces new talent and technologies alike and is now syndicated to over 30 radio stations across the world, as well as its availability through a variety of online outlets."/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@solidsteelradio" />
+    <meta name="twitter:title" content="Solid Steel Radio" />
+    <meta name="twitter:description" content="Launched by Ninja Tune founding duo Coldcut (Matt Black and Jonathan More) in 1988 on the then pirate radio station KISS FM, Solid Steel is now possibly the longest running mix show in the world. Since 1999, the show has been available online, making it a pioneer of the internet mix-show phenomenon. Constantly evolving, the show embraces new talent and technologies alike and is now syndicated to over 30 radio stations across the world, as well as its availability through a variety of online outlets." />
+    <meta name="twitter:image" content="http://solidsteel.net/images/fb.jpg" />
+    <meta name="twitter:url" content="http://solidsteel.net" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <script src="physicsjs-full.min.js"></script>
+    <style>
+      body, html, h1, h2, p {
+        margin: 0;
+        padding: 0;
+      }
+      body, html {
+        height: 100%;
+        width: 100%;
+      }
+
+      h1, h2 {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      body {
+        background: url(pitch.jpg);
+        background-size: cover;
+        background-position: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>31 May</h2>
+    <h1>Indie Label Cup</h1>
+    <script>
+      //
+// Simple example of bouncing balls
+//
+Physics(function (world) {
+    // bounds of the window
+    var viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight)
+        ,edgeBounce
+        ,renderer
+        ;
+
+    // create a renderer
+    renderer = Physics.renderer('canvas', {
+        el: 'viewport'
+    });
+
+    // add the renderer
+    world.add(renderer);
+    // render on each step
+    world.on('step', function () {
+        world.render();
+    });
+
+    // constrain objects to these bounds
+    edgeBounce = Physics.behavior('edge-collision-detection', {
+        aabb: viewportBounds
+        ,restitution: 0.99
+        ,cof: 0.8
+    });
+
+    // resize events
+    window.addEventListener('resize', function () {
+
+        // as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
+        viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
+        // update the boundaries
+        edgeBounce.setAABB(viewportBounds);
+
+    }, true);
+
+    // create some bodies
+    var x = Physics.body('circle', {
+        x: renderer.width * 0.4
+        ,y: renderer.height * 0.3
+        ,vx: 0.3
+        ,radius: 30
+        ,styles: {
+            fillStyle: '#cb4b16'
+            ,angleIndicator: '#72240d'
+        }
+        ,mass: 0.1
+    });
+
+    // var y = Physics.body('circle', {
+    //     x: renderer.width * 0.7
+    //     ,y: renderer.height * 0.3
+    //     ,vx: -0.3
+    //     ,radius: 40
+    //     ,styles: {
+    //         fillStyle: '#6c71c4'
+    //         ,angleIndicator: '#3b3e6b'
+    //     }
+    // });
+
+    var boxes = [x];
+    world.add(boxes);
+
+    var player1 = Physics.body('circle', {
+        x: renderer.width * 0.9
+        ,y: renderer.height * 0.3
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    // Not a hack
+    player1.view = new Image();
+    player1.view.src = '1998.png';
+    world.add(player1);
+
+
+    var player2 = Physics.body('circle', {
+        x: renderer.width * 0.7
+        ,y: renderer.height * 0.3
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player3 = Physics.body('circle', {
+        x: renderer.width * 0.5
+        ,y: renderer.height * 0.3
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player4 = Physics.body('circle', {
+        x: renderer.width * 0.3
+        ,y: renderer.height * 0.3
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player5 = Physics.body('circle', {
+        x: renderer.width * 0.1
+        ,y: renderer.height * 0.3
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player6 = Physics.body('circle', {
+        x: renderer.width * 0.9
+        ,y: renderer.height * 0.7
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player7 = Physics.body('circle', {
+        x: renderer.width * 0.7
+        ,y: renderer.height * 0.7
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player8 = Physics.body('circle', {
+        x: renderer.width * 0.5
+        ,y: renderer.height * 0.7
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player9 = Physics.body('circle', {
+        x: renderer.width * 0.3
+        ,y: renderer.height * 0.7
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+    var player10 = Physics.body('circle', {
+        x: renderer.width * 0.1
+        ,y: renderer.height * 0.7
+        ,radius: 40
+        ,styles: {
+            fillStyle: '#000'
+            ,angleIndicator: '#3b3e6b'
+        }
+        ,mass: 1
+    });
+
+  // Not a hack
+    player2.view = new Image();
+    player2.view.src = '1999.png';
+    world.add(player2);
+
+    // Not a hack
+    player3.view = new Image();
+    player3.view.src = '2000.png';
+    world.add(player3);
+
+    // Not a hack
+    player4.view = new Image();
+    player4.view.src = '2001.png';
+    world.add(player4);
+
+    // Not a hack
+    player5.view = new Image();
+    player5.view.src = '2002.png';
+    world.add(player5);
+
+    // Not a hack
+    player6.view = new Image();
+    player6.view.src = '2003.png';
+    world.add(player6);
+
+    // Not a hack
+    player7.view = new Image();
+    player7.view.src = '2004.png';
+    world.add(player7);
+
+    // Not a hack
+    player8.view = new Image();
+    player8.view.src = '2005.png';
+    world.add(player8);
+
+    // Not a hack
+    player9.view = new Image();
+    player9.view.src = '2006.png';
+    world.add(player9);
+
+    // Not a hack
+    player10.view = new Image();
+    player10.view.src = '2007.png';
+    world.add(player10);
+    // // add some fun interaction
+    // var attractor = Physics.behavior('attractor', {
+    //     order: 0,
+    //     strength: 0.002
+    // });
+    // world.on({
+    //     'interact:poke': function( pos ){
+    //         world.wakeUpAll();
+    //         attractor.position( pos );
+    //         world.add( attractor );
+    //     }
+    //     ,'interact:move': function( pos ){
+    //         attractor.position( pos );
+    //     }
+    //     ,'interact:release': function(){
+    //         world.wakeUpAll();
+    //         world.remove( attractor );
+    //     }
+    // });
+
+    // add things to the world
+    world.add([
+        Physics.behavior('interactive', { el: renderer.container })
+        ,edgeBounce
+    ]);
+
+    var accel = Physics.behavior('constant-acceleration').applyTo( boxes );
+    world.add(accel);
+
+    var resp = Physics.behavior('body-impulse-response').applyTo( boxes );
+    world.add(resp);
+
+    world.add( Physics.behavior('body-collision-detection') );
+    world.add( Physics.behavior('sweep-prune') );
+
+    // subscribe to ticker to advance the simulation
+    Physics.util.ticker.on(function( time ) {
+        world.step( time );
+    });
+});
+    </script>
+  </body>
+</html>
