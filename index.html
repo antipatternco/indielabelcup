@@ -410,8 +410,8 @@ world.on('collisions:detected', function( data, e ){
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
-                    $('#totalRaised').text('£' + data.totalRaisedOnline);
-                    $('#totalRaisedPercent').text('£' + data.totalRaisedPercentageOfFundraisingTarget);
+                    $('#totalRaised').text(data.totalRaisedOnline + '%');
+                    $('#totalRaisedPercent').text('£' + data.totalRaisedPercentageOfFundraisingTarget.toFixed(2));
                 }
             });
         });
