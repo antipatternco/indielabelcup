@@ -108,7 +108,7 @@
     }
 
     var justGivingAppId = '215e4365';
-    var justGivingURL = 'https://api-sandbox.justgiving.com';
+    var justGivingURL = 'https://api-sandbox.justgiving.com/';
 
     // prevent overscrolling on touch devices
     document.ontouchmove = function(event){
@@ -671,6 +671,18 @@ world.on('collisions:detected', function( data, e ){
 
 
 });
+    </script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+     <script>
+        $(function() {
+            $.ajax({
+                url: justGivingURL + justGivingAppId + "/v1/fundraising/pages/indielabelcupdev",
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });
     </script>
   </body>
 </html>
