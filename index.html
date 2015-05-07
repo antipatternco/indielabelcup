@@ -53,6 +53,7 @@
       a:hover {
         border-color: #59fe00;
         color: #59fe00;
+        background: #27782b;
       }
       #about {
         position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;
@@ -232,7 +233,7 @@
                 ,width: 10
                 ,height: 150
                 ,styles: {
-                    fillStyle: '#cb4b16'
+                    fillStyle: '#fff'
                 }
                 ,label: "goal1"
             });
@@ -245,7 +246,7 @@
                 ,width: 10
                 ,height: 150
                 ,styles: {
-                    fillStyle: '#cb4b16'
+                    fillStyle: '#fff'
                 }
                 ,label: "goal2"
             });
@@ -257,8 +258,9 @@
 
             var ball = Physics.body('circle', {
                 x: renderer.width * 0.5
-                ,y: renderer.height * 0.5
+                ,y: -1
                 ,vx: 0
+                ,vy: 0.4
                 ,radius: ballWidth
                 ,styles: {
                     fillStyle: '#cb4b16'
@@ -287,6 +289,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player3 = Physics.body('circle', {
@@ -297,6 +300,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player4 = Physics.body('circle', {
@@ -307,6 +311,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player5 = Physics.body('circle', {
@@ -317,6 +322,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player6 = Physics.body('circle', {
@@ -327,6 +333,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player7 = Physics.body('circle', {
@@ -337,6 +344,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             var player8 = Physics.body('circle', {
@@ -347,6 +355,7 @@
                     fillStyle: '#000'
                 }
                 ,mass: 1
+                ,restitution: 0.1,
             });
 
             if (renderer.width > 600) {
