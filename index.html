@@ -34,7 +34,7 @@
         left: 0;
       }
       body {
-        background: url(pitch.gif);
+        background: url(pitch.png);
         background-size: cover;
         background-position: 50%;
       }
@@ -232,7 +232,7 @@ Physics(function (world) {
      var player1 = Physics.body('circle', {
         x: renderer.width * 0.9
         ,y: renderer.height * 0.3
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -243,7 +243,7 @@ Physics(function (world) {
     var player2 = Physics.body('circle', {
         x: renderer.width * 0.7
         ,y: renderer.height * 0.3
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -253,7 +253,7 @@ Physics(function (world) {
     var player3 = Physics.body('circle', {
         x: renderer.width * 0.5
         ,y: renderer.height * 0.3
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -263,7 +263,7 @@ Physics(function (world) {
     var player4 = Physics.body('circle', {
         x: renderer.width * 0.3
         ,y: renderer.height * 0.3
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -273,7 +273,7 @@ Physics(function (world) {
     var player5 = Physics.body('circle', {
         x: renderer.width * 0.1
         ,y: renderer.height * 0.3
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -283,7 +283,7 @@ Physics(function (world) {
     var player6 = Physics.body('circle', {
         x: renderer.width * 0.9
         ,y: renderer.height * 0.7
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -293,7 +293,7 @@ Physics(function (world) {
     var player7 = Physics.body('circle', {
         x: renderer.width * 0.7
         ,y: renderer.height * 0.7
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -303,7 +303,7 @@ Physics(function (world) {
     var player8 = Physics.body('circle', {
         x: renderer.width * 0.5
         ,y: renderer.height * 0.7
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -313,7 +313,7 @@ Physics(function (world) {
     var player9 = Physics.body('circle', {
         x: renderer.width * 0.3
         ,y: renderer.height * 0.7
-        ,radius: 40
+        ,radius: 48
         ,styles: {
             fillStyle: '#000'
         }
@@ -333,27 +333,23 @@ Physics(function (world) {
     ball.view = new Image();
     ball.view.src = 'ball.png';
     player1.view = new Image();
-    player1.view.src = '1998.png';
+    player1.view.src = 'balls/4AD.png';
     player2.view = new Image();
-    player2.view.src = '1999.png';
+    player2.view.src = 'balls/bella-union.png';
     player3.view = new Image();
-    player3.view.src = '2000.png';
+    player3.view.src = 'balls/domino.png';
     player4.view = new Image();
-    player4.view.src = '2001.png';
+    player4.view.src = 'balls/fabric.png';
     player5.view = new Image();
-    player5.view.src = '2002.png';
+    player5.view.src = 'balls/heavenly.png';
     player6.view = new Image();
-    player6.view.src = '2003.png';
+    player6.view.src = 'balls/hospital.png';
     player7.view = new Image();
-    player7.view.src = '2004.png';
+    player7.view.src = 'balls/ninja.png';
     player8.view = new Image();
-    player8.view.src = '2005.png';
-    player9.view = new Image();
-    player9.view.src = '2006.png';
-    player10.view = new Image();
-    player10.view.src = '2007.png';
+    player8.view.src = 'balls/r&s.png';
     
-    var players = [player1, player2, player3, player4, player5, player6, player7, player8, player9, player10];
+    var players = [player1, player2, player3, player4, player5, player6, player7, player8];
     world.add(players);
     world.add([ball, goal1, goal2]);
 
