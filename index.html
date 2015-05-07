@@ -42,14 +42,9 @@
       #goal div {
         font-size: 150px;
       }
-
-      @media (max-width: 600px) {
-        #thanks div,
-        #goal div {
-            font-size: 72px;
-        }
+      #donate {
+        z-index: 10; position: absolute; bottom: 128px; left: 32px; color: white;
       }
-
       a {
         padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;
       }
@@ -57,13 +52,35 @@
         border-color: #59fe00;
         color: #59fe00;
       }
+      #about {
+        position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;
+      }
+      svg {
+        width: 20%;
+      }
+
+      @media (max-width: 600px) {
+        #thanks div,
+        #goal div {
+            font-size: 60px;
+        }
+        #about {
+            position: absolute; bottom: 16px; left: 16px; width: 90%;
+        }
+        #donate {
+            bottom: 96px; left: 16px;
+        }
+        svg {
+            width: 25%;
+        }
+      }
+
     </style>
   </head>
   <body>
-    <p style="position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;">8 independent record labels come together in the Indie Label Cup. Support the teams in the 5-a-side football tournament by donating your spare change to their chosen charity.</p>
+    <p id="about">8 independent record labels come together in the Indie Label Cup. Support the teams in the 5-a-side football tournament by donating your spare change to their chosen charity.</p>
 
-    <svg id="logo" style="position: absolute; top: 16px; left: 16px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-     width="213.182px" height="216.403px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
+    <svg id="logo" style="position: absolute; top: 16px; left: 16px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
      xml:space="preserve">
 <g>
     <path fill="#FFFFFF" d="M3.229,18.687v-5.296h3.402c2.842,0,4.478-1.593,4.478-3.575c0-2.023-1.679-3.617-4.693-3.617
@@ -109,7 +126,7 @@
 </g>
 </svg>
 
-<div id="goal" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); text-align: center;">
+<div id="goal" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); text-align: center;">
     <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">
         GOOOOAAL!!!
     </div>
@@ -126,7 +143,7 @@
     <p>totalRaised: <span id="totalRaised"></span></p>
 </div>
 
-<div style="z-index: 10; position: absolute; bottom: 128px; left: 32px; color: white;" />
+<div id="donate">
     <a href="http://v3-sandbox.justgiving.com/indielabelcupdev/donate?amount=10.00&exitUrl=http%3A%2F%2Findielabelcup.co.uk%2F%3Fdonated%3Dtrue">donate</a>
 </div>
 <script>
@@ -154,421 +171,413 @@
 
     // prevent overscrolling on touch devices
     document.ontouchmove = function(event){
-    event.preventDefault();
-}
-
-Physics(function (world) {
-    // bounds of the window
-    var viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight),
-        edgeBounce,
-        renderer,
-        width = window.innerWidth,
-        height = window.innerHeight;
-
-    // create a renderer
-    renderer = Physics.renderer('canvas', {
-        el: 'viewport'
-    });
-
-    // add the renderer
-    world.add(renderer);
-    // render on each step
-    world.on('step', function () {
-        world.render();
-    });
-
-    // constrain objects to these bounds
-    edgeBounce = Physics.behavior('edge-collision-detection', {
-        aabb: viewportBounds
-        ,restitution: 0.4
-        ,cof: 0.3
-    });
-
-    // resize events
-    window.addEventListener('resize', function () {
-        // as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
-        viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
-        // update the boundaries
-        edgeBounce.setAABB(viewportBounds);
-
-    }, true);
-
-    // /****************** GOALS *******************/
-
-    var goal1 = Physics.body('rectangle', {
-        treatment: 'static'
-        ,x: 0
-        ,y: renderer.height * 0.5
-        ,vx: 0.3
-        ,width: 10
-        ,height: 150
-        ,styles: {
-            fillStyle: '#cb4b16'
-        }
-        ,label: "goal1"
-    });
-
-    var goal2 = Physics.body('rectangle', {
-        treatment: 'static'
-        ,x: renderer.width
-        ,y: renderer.height * 0.5
-        ,vx: 0.3
-        ,width: 10
-        ,height: 150
-        ,styles: {
-            fillStyle: '#cb4b16'
-        }
-        ,label: "goal2"
-    });
-    /* *************************************************** */
-
-
-
-    // /****************** BALL AND PLAYERS *******************/
-
-    var ball = Physics.body('circle', {
-        x: renderer.width * 0.5
-        ,y: renderer.height * 0.5
-        ,vx: 0
-        ,radius: 30
-        ,styles: {
-            fillStyle: '#cb4b16'
-        }
-        ,mass: 1
-        ,restitution: 0.5
-        ,label: "ball"
-    });
-
-     var player1 = Physics.body('circle', {
-        x: renderer.width * 0.9
-        ,y: renderer.height * 0.3
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-        ,restitution: 0.1,
-    });
-
-    var player2 = Physics.body('circle', {
-        x: renderer.width * 0.7
-        ,y: renderer.height * 0.3
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player3 = Physics.body('circle', {
-        x: renderer.width * 0.5
-        ,y: renderer.height * 0.3
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player4 = Physics.body('circle', {
-        x: renderer.width * 0.3
-        ,y: renderer.height * 0.3
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player5 = Physics.body('circle', {
-        x: renderer.width * 0.1
-        ,y: renderer.height * 0.3
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player6 = Physics.body('circle', {
-        x: renderer.width * 0.9
-        ,y: renderer.height * 0.7
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player7 = Physics.body('circle', {
-        x: renderer.width * 0.7
-        ,y: renderer.height * 0.7
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player8 = Physics.body('circle', {
-        x: renderer.width * 0.5
-        ,y: renderer.height * 0.7
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player9 = Physics.body('circle', {
-        x: renderer.width * 0.3
-        ,y: renderer.height * 0.7
-        ,radius: 48
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    var player10 = Physics.body('circle', {
-        x: renderer.width * 0.1
-        ,y: renderer.height * 0.7
-        ,radius: 40
-        ,styles: {
-            fillStyle: '#000'
-        }
-        ,mass: 1
-    });
-
-    ball.view = new Image();
-    ball.view.src = 'ball.png';
-    player1.view = new Image();
-    player1.view.src = 'balls/4AD.png';
-    player2.view = new Image();
-    player2.view.src = 'balls/bella-union.png';
-    player3.view = new Image();
-    player3.view.src = 'balls/domino.png';
-    player4.view = new Image();
-    player4.view.src = 'balls/fabric.png';
-    player5.view = new Image();
-    player5.view.src = 'balls/heavenly.png';
-    player6.view = new Image();
-    player6.view.src = 'balls/hospital.png';
-    player7.view = new Image();
-    player7.view.src = 'balls/ninja.png';
-    player8.view = new Image();
-    player8.view.src = 'balls/r&s.png';
-    
-    var players = [player1, player2, player3, player4, player5, player6, player7, player8];
-    world.add(players);
-    world.add([ball, goal1, goal2]);
-
-    // // add some fun interaction
-    // var attractor = Physics.behavior('attractor', {
-    //     order: 0,
-    //     strength: 0.002
-    // });
-    // world.on({
-    //     'interact:poke': function( pos ){
-    //         world.wakeUpAll();
-    //         attractor.position( pos );
-    //         world.add( attractor );
-    //     }
-    //     ,'interact:move': function( pos ){
-    //         attractor.position( pos );
-    //     }
-    //     ,'interact:release': function(){
-    //         world.wakeUpAll();
-    //         world.remove( attractor );
-    //     }
-    // });
-
-    // add things to the world
-    world.add([
-        edgeBounce
-    ]);
-
-    var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
-    world.add(tch);
-
-    var accel = Physics.behavior('constant-acceleration').applyTo( ball );
-    world.add(accel);
-
-    var resp = Physics.behavior('body-impulse-response').applyTo( players );
-    world.add(resp);
-
-    world.add( Physics.behavior('body-collision-detection') );
-
-    world.add( Physics.behavior('sweep-prune') );
-
-    // subscribe to ticker to advance the simulation
-    Physics.util.ticker.on(function( time ) {
-        world.step( time );
-    });
-
-
-    // query to find a collision between a body with label "bullet" and a body with label "box"
-var query = Physics.query({
-    $or: [
-        { bodyA: { label: 'ball' }, bodyB: { label: 'goal1' } }
-        ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal1' } }
-        ,{ bodyA: { label: 'ball' }, bodyB: { label: 'goal2' } }
-        ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal2' } }
-    ]
-});
-
-// monitor collisions
-world.on('collisions:detected', function( data, e ){
-    // find the first collision that matches the query
-    //console.log(data.collisions);
-    var found = Physics.util.find( data.collisions, query );
-    if ( found ){
-        // SOMEONE SCORED A GOAL!!!!!
-        //console.log('ball went into: ' + (found.bodyB.label == "ball" ? found.bodyA.label : found.bodyB.label));
-        // move ball back to centre spot
-        ball.state.pos.x = renderer.width * 0.5;
-        ball.state.pos.y = renderer.height * 0.5;
-        ball.state.vel.set(0, 0);
-
-        $('#goal').css('display', 'table');
-        window.setTimeout(function(){
-            $('#goal').css('display', 'none');
-        }, 3000)
+        event.preventDefault();
     }
-});
+
+    function setUp(){
+        Physics(function (world) {
+            // bounds of the window
+            var viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight),
+                edgeBounce,
+                renderer,
+                width = window.innerWidth,
+                height = window.innerHeight;
+
+            // create a renderer
+            renderer = Physics.renderer('canvas', {
+                el: 'viewport'
+            });
+
+            // add the renderer
+            world.add(renderer);
+            // render on each step
+            world.on('step', function () {
+                world.render();
+            });
+
+            // constrain objects to these bounds
+            edgeBounce = Physics.behavior('edge-collision-detection', {
+                aabb: viewportBounds
+                ,restitution: 0.4
+                ,cof: 0.3
+            });
+
+            var resizeId;
+
+            // resize events
+            window.addEventListener('resize', function () {
+                //clearTimeout(resizeId);
+                //resizeId = setTimeout(doneResizing, 750);
+                // // as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
+                viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
+                // // update the boundaries
+                edgeBounce.setAABB(viewportBounds);
+            }, true);
+
+            // function doneResizing(){
+            //     setUp();
+            // }
+
+            var iconWidth = renderer.width > 600 ? 48 : 24;
+            var ballWidth = renderer.width > 600 ? 30 : 15;
+            // /****************** GOALS *******************/
+
+            var goal1 = Physics.body('rectangle', {
+                treatment: 'static'
+                ,x: 0
+                ,y: renderer.height * 0.5
+                ,vx: 0.3
+                ,width: 10
+                ,height: 150
+                ,styles: {
+                    fillStyle: '#cb4b16'
+                }
+                ,label: "goal1"
+            });
+
+            var goal2 = Physics.body('rectangle', {
+                treatment: 'static'
+                ,x: renderer.width
+                ,y: renderer.height * 0.5
+                ,vx: 0.3
+                ,width: 10
+                ,height: 150
+                ,styles: {
+                    fillStyle: '#cb4b16'
+                }
+                ,label: "goal2"
+            });
+            /* *************************************************** */
 
 
-});
-    </script>
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-     <script>
-        (function($) {
-            $.fn.rainbow = function(options) {
-                this.each(function() {
-                
-                    options.originalText = $(this).html();
-                    options.iterations = 0;
-                    if (!options.pauseLength) {
-                        options.pauseLength = options.animateInterval;
-                    }
-                    $(this).data('options',options);
-                    
-                    if (options.pad) {
-                    
-                        for (x = 0; x < options.originalText.length; x++) {
-                            options.colors.unshift(options.colors[options.colors.length-1]);
-                        }
-                    }
-                    
-                    $.fn.rainbow.render(this);      
-                    
-                });
+
+            // /****************** BALL AND PLAYERS *******************/
+
+            var ball = Physics.body('circle', {
+                x: renderer.width * 0.5
+                ,y: renderer.height * 0.5
+                ,vx: 0
+                ,radius: ballWidth
+                ,styles: {
+                    fillStyle: '#cb4b16'
+                }
+                ,mass: 1
+                ,restitution: 0.5
+                ,label: "ball"
+            });
+
+             var player1 = Physics.body('circle', {
+                x: renderer.width * 0.9
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+                ,restitution: 0.1,
+            });
+
+            var player2 = Physics.body('circle', {
+                x: renderer.width * 0.8
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player3 = Physics.body('circle', {
+                x: renderer.width * 0.7
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player4 = Physics.body('circle', {
+                x: renderer.width * 0.6
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player5 = Physics.body('circle', {
+                x: renderer.width * 0.4
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player6 = Physics.body('circle', {
+                x: renderer.width * 0.3
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player7 = Physics.body('circle', {
+                x: renderer.width * 0.2
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            var player8 = Physics.body('circle', {
+                x: renderer.width * 0.1
+                ,y: renderer.height * 0.5
+                ,radius: iconWidth
+                ,styles: {
+                    fillStyle: '#000'
+                }
+                ,mass: 1
+            });
+
+            if (renderer.width > 600) {
+                ball.view = new Image();
+                ball.view.src = 'ball.png';
+                player1.view = new Image();
+                player1.view.src = 'balls/fabric.png';
+                player2.view = new Image();
+                player2.view.src = 'balls/r&s.png';
+                player3.view = new Image();
+                player3.view.src = 'balls/domino.png';
+                player4.view = new Image();
+                player4.view.src = 'balls/ninja.png';
+                player5.view = new Image();
+                player5.view.src = 'balls/heavenly.png';
+                player6.view = new Image();
+                player6.view.src = 'balls/bella-union.png';
+                player7.view = new Image();
+                player7.view.src = 'balls/hospital.png';
+                player8.view = new Image();
+                player8.view.src = 'balls/4AD.png';
+            } else {
+                ball.view = new Image();
+                ball.view.src = 'balls.png';
+                player1.view = new Image();
+                player1.view.src = 'balls/4ADs.png';
+                player2.view = new Image();
+                player2.view.src = 'balls/bella-unions.png';
+                player3.view = new Image();
+                player3.view.src = 'balls/dominos.png';
+                player4.view = new Image();
+                player4.view.src = 'balls/fabrics.png';
+                player5.view = new Image();
+                player5.view.src = 'balls/heavenlys.png';
+                player6.view = new Image();
+                player6.view.src = 'balls/hospitals.png';
+                player7.view = new Image();
+                player7.view.src = 'balls/ninjas.png';
+                player8.view = new Image();
+                player8.view.src = 'balls/r&ss.png';
             }
-                
-            $.fn.rainbow.render = function(obj) {
             
-                    var options = $(obj).data('options');
-                    var chars = options.originalText.split('');
+            var players = [player1, player2, player3, player4, player5, player6, player7, player8];
+            world.add(players);
+            world.add([ball, goal1, goal2]);
 
-                    options.iterations++;
-                        
-                    var newstr = '';
-                    var counter = 0;
-                    for (var x in chars) {
-                    
-                        if (chars[x]!=' ') {
-                            newstr = newstr + '<span style="color: ' + options.colors[counter] + ';">' + chars[x] + '</span>';
-                            counter++;
-                        } else {
-                            newstr = newstr + ' ';
-                        
-                        }
-                    
-                    
-                        if (counter >= options.colors.length) {
-                            counter = 0;
-                        }
-                    }
-                    $(obj).html(newstr);
-            
-                    var pause = (options.iterations % options.colors.length == 0);
-                    
+            // add things to the world
+            world.add([
+                edgeBounce
+            ]);
+
+            var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
+            world.add(tch);
+
+            var accel = Physics.behavior('constant-acceleration').applyTo( ball );
+            world.add(accel);
+
+            var resp = Physics.behavior('body-impulse-response').applyTo( players );
+            world.add(resp);
+
+            world.add( Physics.behavior('body-collision-detection') );
+
+            world.add( Physics.behavior('sweep-prune') );
+
+            // subscribe to ticker to advance the simulation
+            Physics.util.ticker.on(function( time ) {
+                world.step( time );
+            });
 
 
-                    if (options.animate) {
-                    
-                        (
-                            function(obj,interval) {
-                                var options = $(obj).data('options');
-                                var i = setTimeout(function() {
-                                    $.fn.rainbow.shift(obj);
-                                },interval);
-                                options.interval = i;
-                                $(obj).data('options',options);
-                            }
-                        )(obj,pause?options.pauseLength:options.animateInterval);
-                    }   
+            // query to find a collision between a body with label "bullet" and a body with label "box"
+            var query = Physics.query({
+                $or: [
+                    { bodyA: { label: 'ball' }, bodyB: { label: 'goal1' } }
+                    ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal1' } }
+                    ,{ bodyA: { label: 'ball' }, bodyB: { label: 'goal2' } }
+                    ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal2' } }
+                ]
+            });
 
-                    
-            }
-            
-            
-            $.fn.rainbow.shift = function(obj) {
-            
-                var options = $(obj).data('options');
-                var color = options.colors.pop();
-                options.colors.unshift(color);
-                $.fn.rainbow.render(obj);
-            
-            }
-            
-        })(jQuery);
+            // monitor collisions
+            world.on('collisions:detected', function( data, e ){
+                // find the first collision that matches the query
+                //console.log(data.collisions);
+                var found = Physics.util.find( data.collisions, query );
+                if ( found ){
+                    // SOMEONE SCORED A GOAL!!!!!
+                    //console.log('ball went into: ' + (found.bodyB.label == "ball" ? found.bodyA.label : found.bodyB.label));
+                    // move ball back to centre spot
+                    ball.state.pos.x = renderer.width * 0.5;
+                    ball.state.pos.y = renderer.height * 0.5;
+                    ball.state.vel.set(0, 0);
 
-        $(function() {
-            $('#goal div').rainbow({ 
-                    colors: [
-                        '#FF0000',
-                        '#f26522',
-                        '#fff200',
-                        '#00a651',
-                        '#28abe2',
-                        '#2e3192',
-                        '#6868ff'
-                    ],
-                    animate: true,
-                    animateInterval: 100,
-                    pad: false,
-                    pauseLength: 100,
-                });
-
-            if (donated && donated === 'true') {
-                $('#thanks div').rainbow({ 
-                    colors: [
-                        '#FF0000',
-                        '#f26522',
-                        '#fff200',
-                        '#00a651',
-                        '#28abe2',
-                        '#2e3192',
-                        '#6868ff'
-                    ],
-                    animate: true,
-                    animateInterval: 100,
-                    pad: false,
-                    pauseLength: 100,
-                });
-            }
-
-            $.ajax({
-                url: justGivingURL + justGivingAppId + "/v1/fundraising/pages/indielabelcupdev",
-                dataType: 'json',
-                success: function(data) {
-                    console.log(data);
-                    $('#totalRaised').text('£' + parseFloat(data.totalRaisedOnline).toFixed(2));
-                    $('#totalRaisedPercent').text(data.totalRaisedPercentageOfFundraisingTarget + '%');
+                    $('#goal').css('display', 'table');
+                    window.setTimeout(function(){
+                        $('#goal').css('display', 'none');
+                    }, 3000)
                 }
             });
         });
-    </script>
+}
+setUp();
+</script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script>
+    (function($) {
+        $.fn.rainbow = function(options) {
+            this.each(function() {
+            
+                options.originalText = $(this).html();
+                options.iterations = 0;
+                if (!options.pauseLength) {
+                    options.pauseLength = options.animateInterval;
+                }
+                $(this).data('options',options);
+                
+                if (options.pad) {
+                
+                    for (x = 0; x < options.originalText.length; x++) {
+                        options.colors.unshift(options.colors[options.colors.length-1]);
+                    }
+                }
+                
+                $.fn.rainbow.render(this);      
+                
+            });
+        }
+            
+        $.fn.rainbow.render = function(obj) {
+        
+                var options = $(obj).data('options');
+                var chars = options.originalText.split('');
+
+                options.iterations++;
+                    
+                var newstr = '';
+                var counter = 0;
+                for (var x in chars) {
+                
+                    if (chars[x]!=' ') {
+                        newstr = newstr + '<span style="color: ' + options.colors[counter] + ';">' + chars[x] + '</span>';
+                        counter++;
+                    } else {
+                        newstr = newstr + ' ';
+                    
+                    }
+                
+                
+                    if (counter >= options.colors.length) {
+                        counter = 0;
+                    }
+                }
+                $(obj).html(newstr);
+        
+                var pause = (options.iterations % options.colors.length == 0);
+                
+
+
+                if (options.animate) {
+                
+                    (
+                        function(obj,interval) {
+                            var options = $(obj).data('options');
+                            var i = setTimeout(function() {
+                                $.fn.rainbow.shift(obj);
+                            },interval);
+                            options.interval = i;
+                            $(obj).data('options',options);
+                        }
+                    )(obj,pause?options.pauseLength:options.animateInterval);
+                }   
+
+                
+        }
+        
+        
+        $.fn.rainbow.shift = function(obj) {
+        
+            var options = $(obj).data('options');
+            var color = options.colors.pop();
+            options.colors.unshift(color);
+            $.fn.rainbow.render(obj);
+        
+        }
+        
+    })(jQuery);
+
+    $(function() {
+        $('#goal div').rainbow({ 
+                colors: [
+                    '#FF0000',
+                    '#f26522',
+                    '#fff200',
+                    '#00a651',
+                    '#28abe2',
+                    '#2e3192',
+                    '#6868ff'
+                ],
+                animate: true,
+                animateInterval: 100,
+                pad: false,
+                pauseLength: 100,
+            });
+
+        if (donated && donated === 'true') {
+            $('#thanks div').rainbow({ 
+                colors: [
+                    '#FF0000',
+                    '#f26522',
+                    '#fff200',
+                    '#00a651',
+                    '#28abe2',
+                    '#2e3192',
+                    '#6868ff'
+                ],
+                animate: true,
+                animateInterval: 100,
+                pad: false,
+                pauseLength: 100,
+            });
+        }
+
+        $.ajax({
+            url: justGivingURL + justGivingAppId + "/v1/fundraising/pages/indielabelcupdev",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                $('#totalRaised').text('£' + parseFloat(data.totalRaisedOnline).toFixed(2));
+                $('#totalRaisedPercent').text(data.totalRaisedPercentageOfFundraisingTarget + '%');
+            }
+        });
+    });
+</script>
   </body>
 </html>
