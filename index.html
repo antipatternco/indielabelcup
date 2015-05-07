@@ -88,7 +88,30 @@
 </g>
 </svg>
 
+<div style="z-index: 10; position: absolute; bottom: 0; left: 0; background: black; color: white;" />
+    <a href="http://v3-sandbox.justgiving.com/indielabelcupdev/donate?amount=10.00&exitUrl=http%3A%2F%2Findielabelcup.co.uk%3Fdonated%3Dtrue'">donate</a>
+</div>
 <script>
+    function getQueryVariable(variable) {
+       var query = window.location.search.substring(1);
+       var vars = query.split("&");
+       for (var i=0;i<vars.length;i++) {
+               var pair = vars[i].split("=");
+               if(pair[0] == variable){return pair[1];}
+       }
+       return(false);
+    }
+    var donated = getQueryVariable('donated');
+
+    alert(donated);
+
+    if(donated && donated === 'true'){
+        alert('thanks for donating');
+    }
+
+    var justGivingAppId = '215e4365';
+    var justGivingURL = 'https://api-sandbox.justgiving.com';
+
     // prevent overscrolling on touch devices
     document.ontouchmove = function(event){
     event.preventDefault();
