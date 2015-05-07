@@ -370,21 +370,21 @@
                 ball.view = new Image();
                 ball.view.src = 'balls.png';
                 player1.view = new Image();
-                player1.view.src = 'balls/4ADs.png';
+                player1.view.src = 'balls/fabrics.png';
                 player2.view = new Image();
-                player2.view.src = 'balls/bella-unions.png';
+                player2.view.src = 'balls/r&ss.png';
                 player3.view = new Image();
                 player3.view.src = 'balls/dominos.png';
                 player4.view = new Image();
-                player4.view.src = 'balls/fabrics.png';
+                player4.view.src = 'balls/ninjas.png';
                 player5.view = new Image();
                 player5.view.src = 'balls/heavenlys.png';
                 player6.view = new Image();
-                player6.view.src = 'balls/hospitals.png';
+                player6.view.src = 'balls/bella-unions.png';
                 player7.view = new Image();
-                player7.view.src = 'balls/ninjas.png';
+                player7.view.src = 'balls/hospitals.png';
                 player8.view = new Image();
-                player8.view.src = 'balls/r&ss.png';
+                player8.view.src = 'balls/4ADs.png';
             }
             
             var players = [player1, player2, player3, player4, player5, player6, player7, player8];
@@ -432,11 +432,35 @@
                 var found = Physics.util.find( data.collisions, query );
                 if ( found ){
                     // SOMEONE SCORED A GOAL!!!!!
-                    //console.log('ball went into: ' + (found.bodyB.label == "ball" ? found.bodyA.label : found.bodyB.label));
                     // move ball back to centre spot
                     ball.state.pos.x = renderer.width * 0.5;
                     ball.state.pos.y = renderer.height * 0.5;
                     ball.state.vel.set(0, 0);
+
+                    players[0].state.pos.x = renderer.width * 0.9;
+                    players[0].state.pos.y = renderer.height * 0.5;
+                    players[0].state.vel.set(0, 0);
+                    players[1].state.pos.x = renderer.width * 0.8;
+                    players[1].state.pos.y = renderer.height * 0.5;
+                    players[1].state.vel.set(0, 0);
+                    players[2].state.pos.x = renderer.width * 0.7;
+                    players[2].state.pos.y = renderer.height * 0.5;
+                    players[2].state.vel.set(0, 0);
+                    players[3].state.pos.x = renderer.width * 0.6;
+                    players[3].state.pos.y = renderer.height * 0.5;
+                    players[3].state.vel.set(0, 0);
+                    players[4].state.pos.x = renderer.width * 0.4;
+                    players[4].state.pos.y = renderer.height * 0.5;
+                    players[4].state.vel.set(0, 0);
+                    players[5].state.pos.x = renderer.width * 0.3;
+                    players[5].state.pos.y = renderer.height * 0.5;
+                    players[5].state.vel.set(0, 0);
+                    players[6].state.pos.x = renderer.width * 0.2;
+                    players[6].state.pos.y = renderer.height * 0.5;
+                    players[6].state.vel.set(0, 0);
+                    players[7].state.pos.x = renderer.width * 0.1;
+                    players[7].state.pos.y = renderer.height * 0.5;
+                    players[7].state.vel.set(0, 0);
 
                     $('#goal').css('display', 'table');
                     window.setTimeout(function(){
