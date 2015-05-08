@@ -20,70 +20,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="physicsjs-full.min.js"></script>
     <style>
-      body, html, h1, h2, p {
-        margin: 0;
-        padding: 0;
-      }
-      body, html {
-        height: 100%;
-        width: 100%;
-        overflow: hidden;
-      }
-
-      h1, h2 {
-        position: absolute;
-        top: 0;
-        left: 0;
-      }
-      body {
-        background: url(pitch.png);
-        background-size: cover;
-        background-position: 50%;
-      }
-      #thanks div,
-      #goal div {
-        font-size: 150px;
-      }
-      #donate {
-        z-index: 10; position: absolute; bottom: 128px; left: 32px; color: white;
-      }
-      a {
-        padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;
-      }
-      a:hover {
-        border-color: #59fe00;
-        color: #59fe00;
-        background: #27782b;
-      }
-      #about {
-        position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;
-      }
-      svg {
-        width: 20%;
-      }
-
-      @media (max-width: 600px) {
-        #thanks div,
-        #goal div {
-            font-size: 60px;
-        }
-        #about {
-            position: absolute; bottom: 16px; left: 16px; width: 90%;
-        }
-        #donate {
-            bottom: 96px; left: 16px;
-        }
-        svg {
-            width: 25%;
-        }
-      }
-
+      body, html, h1, h2, p {margin: 0;padding: 0;}
+      body, html {height: 100%;width: 100%;overflow: hidden;}
+      h1, h2 { position:absolute;top:0;left: 0;}
+      body {background: url(pitch.png);background-size: cover;background-position: 50%;}
+      #thanks div,#goal div {font-size: 150px;}
+      #donate {z-index: 10; position: absolute; bottom: 128px; left: 32px; color: white;}
+      a {padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;}
+      a:hover {border-color: #59fe00;color: #59fe00;background: #27782b;}
+      #about {position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;}
+      svg {width: 20%;}
+      @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 60px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);}}
     </style>
   </head>
   <body>
     <p id="about">8 independent record labels come together in the Indie Label Cup. Support the teams in the 5-a-side football tournament by donating your spare change to their chosen charity.</p>
 
-    <svg id="logo" style="position: absolute; top: 16px; left: 16px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
+<!-- ********** LOGO ************* -->
+<svg id="logo" style="position: absolute; top: 16px; left: 16px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
      xml:space="preserve">
 <g>
     <path fill="#FFFFFF" d="M3.229,18.687v-5.296h3.402c2.842,0,4.478-1.593,4.478-3.575c0-2.023-1.679-3.617-4.693-3.617
@@ -129,26 +83,32 @@
 </g>
 </svg>
 
+
+<!-- ********** GOAL ************* -->
 <div id="goal" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); text-align: center;">
     <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">
         GOOOOAAL!!!
     </div>
 </div>
 
+<!-- ********** THANKS ************* -->
 <div id="thanks" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); text-align: center;">
     <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">
         THANK YOU :)
     </div>
 </div>
 
-<div style="z-index: 10; position: absolute; top: 0; right: 0; background: black; color: white; padding: 20px;">
-    <p>totalRaisedPercent: <span id="totalRaisedPercent"></span></p>
-    <p>totalRaised: <span id="totalRaised"></span></p>
+<!-- ********** TOTALISER ************* -->
+<div style="z-index: 10; position: absolute; top: 0; right: 0; color: white; padding: 20px; font-family: helvetica, arial, sans-serif;">
+    <p><span id="totalRaised"></span></p>
 </div>
 
+<!-- ********** DONATE ************* -->
 <div id="donate">
     <a href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=574206">donate</a>
 </div>
+
+<!-- ********** PHYSICS ************* -->
 <script>
     function getQueryVariable(variable) {
        var query = window.location.search.substring(1);
@@ -168,9 +128,6 @@
             $('#thanks').css('display', 'none');
         }, 3000)
     }
-
-    var justGivingAppId = '215e4365';
-    var justGivingURL = 'https://api-sandbox.justgiving.com/';
 
     // prevent overscrolling on touch devices
     document.ontouchmove = function(event){
@@ -227,11 +184,11 @@
 
             var goal1 = Physics.body('rectangle', {
                 treatment: 'static'
-                ,x: 0
-                ,y: renderer.height * 0.5
+                ,x: renderer.width > 600 ? 0 : renderer.width/2
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : 0
                 ,vx: 0.3
-                ,width: 10
-                ,height: 150
+                ,width: renderer.width > 600 ? 10 : 150
+                ,height: renderer.width > 600 ? 150 : 10
                 ,styles: {
                     fillStyle: '#fff'
                 }
@@ -240,11 +197,11 @@
 
             var goal2 = Physics.body('rectangle', {
                 treatment: 'static'
-                ,x: renderer.width
-                ,y: renderer.height * 0.5
-                ,vx: 0.3
-                ,width: 10
-                ,height: 150
+                ,x: renderer.width > 600 ? renderer.width : renderer.width/2
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height
+                ,vx: 0
+                ,width: renderer.width > 600 ? 10 : 150
+                ,height: renderer.width > 600 ? 150 : 10
                 ,styles: {
                     fillStyle: '#fff'
                 }
@@ -258,9 +215,9 @@
 
             var ball = Physics.body('circle', {
                 x: renderer.width * 0.5
-                ,y: -1
+                ,y: renderer.height * 0.5
                 ,vx: 0
-                ,vy: 0.4
+                ,vy: 0
                 ,radius: ballWidth
                 ,styles: {
                     fillStyle: '#cb4b16'
@@ -271,8 +228,8 @@
             });
 
              var player1 = Physics.body('circle', {
-                x: renderer.width * 0.9
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -282,8 +239,8 @@
             });
 
             var player2 = Physics.body('circle', {
-                x: renderer.width * 0.8
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -293,8 +250,8 @@
             });
 
             var player3 = Physics.body('circle', {
-                x: renderer.width * 0.7
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -304,8 +261,8 @@
             });
 
             var player4 = Physics.body('circle', {
-                x: renderer.width * 0.6
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -315,8 +272,8 @@
             });
 
             var player5 = Physics.body('circle', {
-                x: renderer.width * 0.4
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -326,8 +283,8 @@
             });
 
             var player6 = Physics.body('circle', {
-                x: renderer.width * 0.3
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -337,8 +294,8 @@
             });
 
             var player7 = Physics.body('circle', {
-                x: renderer.width * 0.2
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -348,8 +305,8 @@
             });
 
             var player8 = Physics.body('circle', {
-                x: renderer.width * 0.1
-                ,y: renderer.height * 0.5
+                x: renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
+                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
                 ,radius: iconWidth
                 ,styles: {
                     fillStyle: '#000'
@@ -611,8 +568,7 @@ setUp();
             url: "http://api.jo.je/virginmoneygiving/data/574206",
             dataType: 'json',
             success: function(data) {
-                $('#totalRaised').text('£' + data.money_total);
-                $('#totalRaisedPercent').text(data.percentage_complete + '%');
+                $('#totalRaised').html('£' + data.money_total + ' <br />raised');
             }
         });
     });
