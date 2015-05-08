@@ -601,9 +601,10 @@ setUp();
 
       function loopSound(sound) {
         sound.play({
-        onfinish: function() {
-            loopSound(sound);
-        }
+            onfinish: function() {
+               loopSound(sound);
+            }
+        });
       }
 
       SC.get("/tracks/68280948", function(track){
