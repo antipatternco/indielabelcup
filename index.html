@@ -582,7 +582,7 @@ setUp();
         }
 
         $.ajax({
-            url: "http://api.jo.je/virginmoneygiving/data/574206",
+            url: "http://api.jo.je/virginmoneygiving/jsonp.php?d=574206&callback=?",
             dataType: 'json',
             success: function(data) {
                 $('.loader').remove();
