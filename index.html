@@ -306,13 +306,9 @@
         
         var players = [player1, player2, player3, player4, player5, player6, player7, player8];
         world.add(players);
-        world.add([goal1, goal2]);
+        world.add([goal1, goal2, edgeBounce]);
 
         window.setTimeout(function(){ world.add(ball); }, 1000);
-        // add things to the world
-        world.add([
-            edgeBounce
-        ]);
 
         var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
         world.add(tch);
@@ -341,7 +337,7 @@
             var found = Physics.util.find( data.collisions, query );
             if ( found ){
                 // SOMEONE SCORED A GOAL!!!!!
-                //a.play();
+                a.play();
                 ball.state.pos.x = renderer.width * 0.5;
                 ball.state.pos.y = renderer.height * 0.5;
                 ball.state.vel.set(0, 0);
@@ -374,7 +370,7 @@
                 $('#goal').css('display', 'table');
                 window.setTimeout(function(){
                     $('#goal').css('display', 'none');
-                }, 3000)
+                }, 1800)
             }
         });
     });
@@ -494,9 +490,9 @@
       });
       }
     </script>
-    <!-- <audio src="AIRHORN.mp3" type="audio/mp3" preload="auto"></audio> -->
+    <audio src="AIRHORN.mp3" type="audio/mp3" preload="auto"></audio>
     <script>
-    //     a = document.getElementsByTagName("audio")[0];
+    a = document.getElementsByTagName("audio")[0];
     </script>
   </body>
 </html>
