@@ -232,8 +232,8 @@
             var ball = Physics.body('circle', {
                 x: renderer.width > 600 ? renderer.width * 0.5 : 0
                 ,y: renderer.width > 600 ? renderer.height : renderer.height/2
-                ,vx: renderer.width > 600 ? 0 : 0.2
-                ,vy: renderer.width > 600 ? 0.2 : 0
+                ,vx: renderer.width > 600 ? 0 : 0.5
+                ,vy: renderer.width > 600 ? -2 : 0
                 ,radius: ballWidth
                 ,styles: {
                     fillStyle: '#cb4b16'
