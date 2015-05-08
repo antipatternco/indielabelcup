@@ -20,18 +20,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <script src="physicsjs-full.min.js"></script>
     <style>
-      body, html, h1, h2, p {margin: 0;padding: 0;}
+      body, html, h1, h2, p, span, a {margin: 0;padding: 0;  -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none;user-select: none; }
       body, html {height: 100%;width: 100%;overflow: hidden;}
       h1, h2 { position:absolute;top:0;left: 0;}
-      body {background: url(pitch.png);background-size: cover;background-position: 50%;}
+      #logo {position: absolute; top: 40px; left: 40px;}
+      body {background: #008643 url(pitch.png);background-position: 50%; background-repeat: no-repeat;}
       #thanks div,#goal div {font-size: 150px;}
-      #donate {z-index: 10; position: absolute; bottom: 128px; left: 32px; color: white;}
       a {padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;}
       a:hover {border-color: #59fe00;color: #59fe00;background: #27782b;}
-      #about {position: absolute; bottom: 32px; left: 32px; width: 25%; font-family: verdana; color: #fff; font-size: 12px;}
-      svg {width: 20%;}
-      #crisis {position: absolute; bottom: 32px; right: 32px;}
-      @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 50px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);} #crisis {bottom: 96px; right: 16px;} }
+      
+      svg {width: 20%; max-width: 300px;}
+      #donate {z-index: 10; position: absolute; bottom: 176px; left: 40px; color: white;}
+      #crisis {position: absolute; bottom: 40px; left: 40px;}
+      #about {position: absolute; bottom: 96px; left: 40px; width: 25%; min-width: 300px; font-family: verdana; color: #fff; font-size: 12px;}
+
+      #totaliser {z-index: 10; position: absolute; top: 40px; right: 40px; color: white; font-family: helvetica, arial, sans-serif; font-size: 24px; font-weight: bold; line-height: 24px;}
+      .loader {left: -2em;}
+      .loader,.loader:before,.loader:after {background: #FFF;-webkit-animation: load1 1s infinite ease-in-out;animation: load1 1s infinite ease-in-out;width: 1em;height: 1em;}
+      .loader:before,.loader:after {position: absolute;top: 0;content: '';}
+      .loader:before {left: -1.5em;-webkit-animation-delay: -0.32s;animation-delay: -0.32s;}
+      .loader {text-indent: -9999em;margin: 0;position: relative;font-size: 11px;-webkit-transform: translateZ(0);-ms-transform: translateZ(0); transform: translateZ(0);-webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
+      .loader:after {left: 1.5em;}
+      @-webkit-keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;}40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
+      @keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;} 40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
+      @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 50px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);} #crisis {bottom: 96px; right: 16px;} #logo { left: 8px; top: 8px;} #crisis {bottom: 96px; left: auto;right: 8px;} #totaliser { top: 8px; right: 8px;} .loader {font-size: 6px;} .loader,.loader:before,.loader:after {width: 0.5em; height:0.5em;} .loader:after {left: 1em;} .loader:before {left: -1em;} .loader { left: -1em;} a{background: #27782b;}}
     </style>
   </head>
   <body>
@@ -40,7 +52,7 @@
     <img id="crisis" src="crisis.png" />
 
 <!-- ********** LOGO ************* -->
-<svg id="logo" style="position: absolute; top: 16px; left: 16px;" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
+<svg id="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
      xml:space="preserve">
 <g>
     <path fill="#FFFFFF" d="M3.229,18.687v-5.296h3.402c2.842,0,4.478-1.593,4.478-3.575c0-2.023-1.679-3.617-4.693-3.617
@@ -102,7 +114,8 @@
 </div>
 
 <!-- ********** TOTALISER ************* -->
-<div style="z-index: 10; position: absolute; top: 0; right: 0; color: white; padding: 20px; font-family: helvetica, arial, sans-serif;">
+<div id="totaliser">
+    <div class="loader"></div>
     <p><span id="totalRaised"></span></p>
 </div>
 
@@ -218,9 +231,9 @@
 
             var ball = Physics.body('circle', {
                 x: renderer.width * 0.5
-                ,y: renderer.height * 0.5
+                ,y: renderer.height
                 ,vx: 0
-                ,vy: 0
+                ,vy: -2
                 ,radius: ballWidth
                 ,styles: {
                     fillStyle: '#cb4b16'
@@ -360,8 +373,9 @@
             
             var players = [player1, player2, player3, player4, player5, player6, player7, player8];
             world.add(players);
-            world.add([ball, goal1, goal2]);
+            world.add([goal1, goal2]);
 
+            window.setTimeout(function(){ world.add(ball); }, 1000);
             // add things to the world
             world.add([
                 edgeBounce
@@ -411,29 +425,29 @@
                     ball.state.pos.y = renderer.height * 0.5;
                     ball.state.vel.set(0, 0);
 
-                    players[0].state.pos.x = renderer.width * 0.9;
-                    players[0].state.pos.y = renderer.height * 0.5;
+                    players[0].state.pos.x = renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
+                    players[0].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
                     players[0].state.vel.set(0, 0);
-                    players[1].state.pos.x = renderer.width * 0.8;
-                    players[1].state.pos.y = renderer.height * 0.5;
+                    players[1].state.pos.x = renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
+                    players[1].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
                     players[1].state.vel.set(0, 0);
-                    players[2].state.pos.x = renderer.width * 0.7;
-                    players[2].state.pos.y = renderer.height * 0.5;
+                    players[2].state.pos.x = renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
+                    players[2].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
                     players[2].state.vel.set(0, 0);
-                    players[3].state.pos.x = renderer.width * 0.6;
-                    players[3].state.pos.y = renderer.height * 0.5;
+                    players[3].state.pos.x = renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
+                    players[3].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
                     players[3].state.vel.set(0, 0);
-                    players[4].state.pos.x = renderer.width * 0.4;
-                    players[4].state.pos.y = renderer.height * 0.5;
+                    players[4].state.pos.x = renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
+                    players[4].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
                     players[4].state.vel.set(0, 0);
-                    players[5].state.pos.x = renderer.width * 0.3;
-                    players[5].state.pos.y = renderer.height * 0.5;
+                    players[5].state.pos.x = renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
+                    players[5].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
                     players[5].state.vel.set(0, 0);
-                    players[6].state.pos.x = renderer.width * 0.2;
-                    players[6].state.pos.y = renderer.height * 0.5;
+                    players[6].state.pos.x = renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
+                    players[6].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
                     players[6].state.vel.set(0, 0);
-                    players[7].state.pos.x = renderer.width * 0.1;
-                    players[7].state.pos.y = renderer.height * 0.5;
+                    players[7].state.pos.x = renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
+                    players[7].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
                     players[7].state.vel.set(0, 0);
 
                     $('#goal').css('display', 'table');
@@ -571,6 +585,7 @@ setUp();
             url: "http://api.jo.je/virginmoneygiving/data/574206",
             dataType: 'json',
             success: function(data) {
+                $('.loader').remove();
                 $('#totalRaised').html('£' + data.money_total + ' <br />raised');
             }
         });
@@ -583,10 +598,17 @@ setUp();
       SC.initialize({
         client_id: "d1cd63a3738d56d1626b58d26cb41069"
       });
+
+      function loopSound(sound) {
+        sound.play({
+        onfinish: function() {
+            loopSound(sound);
+        }
+      }
+
       SC.get("/tracks/68280948", function(track){
           SC.stream(track.uri, function(stream){
-            window.stream = stream;
-            stream.play();
+            loopSound(stream);
           });
       });
     </script>
