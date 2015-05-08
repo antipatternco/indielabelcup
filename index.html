@@ -591,10 +591,9 @@ setUp();
         });
     });
 </script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.0.0/mobile-detect.min.js"></script>
 <script src="//connect.soundcloud.com/sdk.js"></script>
 <script>      
-// 68280948
-// 34978532
       SC.initialize({
         client_id: "d1cd63a3738d56d1626b58d26cb41069"
       });
@@ -607,11 +606,14 @@ setUp();
         });
       }
 
+      var md = new MobileDetect(window.navigator.userAgent);
+      if(!md.mobile()) {
       SC.get("/tracks/68280948", function(track){
           SC.stream(track.uri, function(stream){
             loopSound(stream);
           });
       });
+      }
     </script>
 
     <!-- <audio src="AIRHORN.mp3" type="audio/mp3" preload="auto"></audio> -->
