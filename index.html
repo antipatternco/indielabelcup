@@ -26,106 +26,56 @@
       #logo {position: absolute; top: 40px; left: 40px;}
       body {background: #008643 url(pitch.png);background-position: 50%; background-repeat: no-repeat;}
       #thanks div,#goal div {font-size: 150px;}
-      a {padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;}
-      a:hover {border-color: #59fe00;color: #59fe00;background: #27782b;}
-      
+      #donate a {padding: 8px 32px; border: 2px solid #fff; text-decoration: none; text-transform: uppercase; font-weight: bold; font-family: verdana; color: #fff;}
+      #donate a:hover {border-color: #59fe00;color: #59fe00;background: #27782b;}
       svg {width: 20%; max-width: 300px;}
-      #donate {z-index: 10; position: absolute; bottom: 176px; left: 40px; color: white;}
-      #crisis {position: absolute; bottom: 40px; left: 40px;}
+      #donate {z-index: 10; position: absolute; bottom: 184px; left: 40px; color: white;}
+      #crisis {position: absolute; bottom: 40px; left: 40px; z-index: 10;}
       #about {position: absolute; bottom: 96px; left: 40px; width: 25%; min-width: 300px; font-family: verdana; color: #fff; font-size: 12px;}
-
-      #totaliser {z-index: 10; position: absolute; top: 40px; right: 40px; color: white; font-family: helvetica, arial, sans-serif; font-size: 24px; font-weight: bold; line-height: 24px;}
-      .loader {left: -2em;}
-      .loader,.loader:before,.loader:after {background: #FFF;-webkit-animation: load1 1s infinite ease-in-out;animation: load1 1s infinite ease-in-out;width: 1em;height: 1em;}
-      .loader:before,.loader:after {position: absolute;top: 0;content: '';}
-      .loader:before {left: -1.5em;-webkit-animation-delay: -0.32s;animation-delay: -0.32s;}
-      .loader {text-indent: -9999em;margin: 0;position: relative;font-size: 11px;-webkit-transform: translateZ(0);-ms-transform: translateZ(0); transform: translateZ(0);-webkit-animation-delay: -0.16s;animation-delay: -0.16s;}
-      .loader:after {left: 1.5em;}
-      @-webkit-keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;}40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
-      @keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;} 40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
-      @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 50px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);} #crisis {bottom: 96px; right: 16px;} #logo { left: 8px; top: 8px;} #crisis {bottom: 96px; left: auto;right: 8px;} #totaliser { top: 8px; right: 8px;} .loader {font-size: 6px;} .loader,.loader:before,.loader:after {width: 0.5em; height:0.5em;} .loader:after {left: 1em;} .loader:before {left: -1em;} .loader { left: -1em;} a{background: #27782b;}}
+      @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 50px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);} #crisis {bottom: 96px; right: 16px;} #logo { left: 8px; top: 8px;} #crisis {bottom: 96px; left: auto;right: 8px;} #totaliser { top: 8px; right: 8px;} .loader {font-size: 6px;} .loader,.loader:before,.loader:after {width: 0.5em; height:0.5em;} .loader:after {left: 1em;} .loader:before {left: -1em;} .loader { left: -1em;} #donate a{background: #27782b;}}
     </style>
   </head>
   <body>
     <p id="about">8 independent record labels come together in the Indie Label Cup. Support the teams in the 5-a-side football tournament by donating your spare change to their chosen charity.</p>
-
-    <img id="crisis" src="crisis.png" />
-
-<!-- ********** LOGO ************* -->
-<svg id="logo" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
+    <a id="crisis" href="http://www.crisis.org.uk"><img src="crisis.png" /></a>
+    <!-- ********** LOGO ************* -->
+    <svg id="logo" x="0px" y="0px" viewBox="0 0 213.182 216.403" enable-background="new 0 0 213.182 216.403"
      xml:space="preserve">
-<g>
-    <path fill="#FFFFFF" d="M3.229,18.687v-5.296h3.402c2.842,0,4.478-1.593,4.478-3.575c0-2.023-1.679-3.617-4.693-3.617
+    <g><path fill="#FFFFFF" d="M3.229,18.687v-5.296h3.402c2.842,0,4.478-1.593,4.478-3.575c0-2.023-1.679-3.617-4.693-3.617
         c-2.541,0-4.22,0.733-5.77,1.636V2.41C2.11,1.593,4.004,0.947,6.545,0.947c6.2,0,10.161,3.272,10.161,8.396
         c0,2.799-1.808,5.426-4.047,6.675c2.928,1.42,4.65,4.09,4.65,7.319c0,4.951-4.004,9.085-10.808,9.085
         c-2.54,0-5.295-0.905-6.501-1.766v-5.382c1.033,0.431,3.229,1.852,6.501,1.852c3.747,0,5.253-1.894,5.253-4.219
-        c0-2.326-1.894-4.22-5.253-4.22H3.229z"/>
-    <path fill="#FFFFFF" d="M39.832,26.437v5.296h-19.29v-5.296h7.233V6.889h-6.244V1.593H33.33v24.844H39.832z"/>
-    <path fill="#FFFFFF" d="M85.563,31.733h-5.554V12.746l-10.291,9.816l-10.248-9.816v18.988h-5.555V0l15.802,15.156L85.563,0V31.733z
-        "/>
-    <path fill="#FFFFFF" d="M119.111,31.733H88.412l15.328-31.69L119.111,31.733z M110.543,26.437l-6.803-14.639l-6.803,14.639H110.543
-        z"/>
-    <path fill="#FFFFFF" d="M131.603,20.795v10.938h-5.555V20.795L113.777,1.593h6.587l8.439,13.691l8.483-13.691h6.586L131.603,20.795
-        z"/>
-    <path fill="#FFFFFF" d="M20.684,54.338v33.536h10.784v9.084H0.445v-9.084h10.711V54.338H0.445v-9.085h31.023v9.085H20.684z"/>
-    <path fill="#FFFFFF" d="M84.061,45.253v54.143L60.72,77.532L37.378,99.396v-0.148l-0.074,0.148V42.593l37.302,34.864V45.253H84.061
-        z M53.776,71.032l-7.017-6.574v13.074L53.776,71.032z"/>
-    <path fill="#FFFFFF" d="M142.048,71.18c0,14.847-11.155,25.778-27.774,25.778H94.626V71.18h9.529v16.694h10.12
+        c0-2.326-1.894-4.22-5.253-4.22H3.229z"/><path fill="#FFFFFF" d="M39.832,26.437v5.296h-19.29v-5.296h7.233V6.889h-6.244V1.593H33.33v24.844H39.832z"/><path fill="#FFFFFF" d="M85.563,31.733h-5.554V12.746l-10.291,9.816l-10.248-9.816v18.988h-5.555V0l15.802,15.156L85.563,0V31.733z
+        "/><path fill="#FFFFFF" d="M119.111,31.733H88.412l15.328-31.69L119.111,31.733z M110.543,26.437l-6.803-14.639l-6.803,14.639H110.543
+        z"/><path fill="#FFFFFF" d="M131.603,20.795v10.938h-5.555V20.795L113.777,1.593h6.587l8.439,13.691l8.483-13.691h6.586L131.603,20.795
+        z"/><path fill="#FFFFFF" d="M20.684,54.338v33.536h10.784v9.084H0.445v-9.084h10.711V54.338H0.445v-9.085h31.023v9.085H20.684z"/><path fill="#FFFFFF" d="M84.061,45.253v54.143L60.72,77.532L37.378,99.396v-0.148l-0.074,0.148V42.593l37.302,34.864V45.253H84.061
+        z M53.776,71.032l-7.017-6.574v13.074L53.776,71.032z"/><path fill="#FFFFFF" d="M142.048,71.18c0,14.847-11.155,25.778-27.774,25.778H94.626V71.18h9.529v16.694h10.12
         c3.028,0,5.761-0.444,8.125-1.404l-33.46-41.216h25.335C130.747,45.253,142.048,56.258,142.048,71.18z M114.274,54.338h-5.688
-        l21.273,26.296c1.699-2.659,2.584-5.836,2.584-9.455C132.444,61.135,125.428,54.338,114.274,54.338z"/>
-    <path fill="#FFFFFF" d="M165.537,54.338v33.536h10.784v9.084h-31.021v-9.084h10.709V54.338h-10.709v-9.085h31.021v9.085H165.537z"
-        />
-    <path fill="#FFFFFF" d="M191.688,54.338v13.148h20.534v9.086h-20.534v11.302h21.495v9.084h-31.024V45.253h31.024v9.085H191.688z"/>
-    <path fill="#FFFFFF" d="M12.706,146.967h20.018v9.085H3.178v-51.706h9.528V146.967z"/>
-    <path fill="#FFFFFF" d="M86.203,156.052H33.537l26.296-54.365L86.203,156.052z M71.504,146.967l-11.671-25.114l-11.67,25.114
-        H71.504z"/>
-    <path fill="#FFFFFF" d="M128.234,140.615c0,8.863-5.613,15.438-17.432,15.438H91.08v-51.706h18.097
+        l21.273,26.296c1.699-2.659,2.584-5.836,2.584-9.455C132.444,61.135,125.428,54.338,114.274,54.338z"/><path fill="#FFFFFF" d="M165.537,54.338v33.536h10.784v9.084h-31.021v-9.084h10.709V54.338h-10.709v-9.085h31.021v9.085H165.537z"
+        /><path fill="#FFFFFF" d="M191.688,54.338v13.148h20.534v9.086h-20.534v11.302h21.495v9.084h-31.024V45.253h31.024v9.085H191.688z"/><path fill="#FFFFFF" d="M12.706,146.967h20.018v9.085H3.178v-51.706h9.528V146.967z"/><path fill="#FFFFFF" d="M86.203,156.052H33.537l26.296-54.365L86.203,156.052z M71.504,146.967l-11.671-25.114l-11.67,25.114
+        H71.504z"/><path fill="#FFFFFF" d="M128.234,140.615c0,8.863-5.613,15.438-17.432,15.438H91.08v-51.706h18.097
         c10.932,0,15.438,6.058,15.438,13.519c0,3.839-1.995,7.164-5.244,9.454C125.649,129.831,128.234,135.296,128.234,140.615z
          M100.534,124.069h8.643c3.916,0,5.909-2.512,5.909-5.466c0-3.029-1.698-5.244-5.909-5.244h-8.643V124.069z M118.631,140.023
-        c0-3.988-2.438-7.386-7.535-7.386h-10.562v14.33h10.268C115.973,146.967,118.631,144.012,118.631,140.023z"/>
-    <path fill="#FFFFFF" d="M143.229,113.433v13.148h20.535v9.085h-20.535v11.301h21.495v9.085h-31.023v-51.706h31.023v9.086H143.229z"
-        />
-    <path fill="#FFFFFF" d="M180.606,146.967h20.018v9.085h-29.546v-51.706h9.529V146.967z"/>
-    <path fill="#FFFFFF" d="M49.86,204.88c-4.802,6.573-12.041,11.522-22.16,11.522c-16.103,0-27.256-12.04-27.256-26.96
+        c0-3.988-2.438-7.386-7.535-7.386h-10.562v14.33h10.268C115.973,146.967,118.631,144.012,118.631,140.023z"/><path fill="#FFFFFF" d="M143.229,113.433v13.148h20.535v9.085h-20.535v11.301h21.495v9.085h-31.023v-51.706h31.023v9.086H143.229z"
+        /><path fill="#FFFFFF" d="M180.606,146.967h20.018v9.085h-29.546v-51.706h9.529V146.967z"/><path fill="#FFFFFF" d="M49.86,204.88c-4.802,6.573-12.041,11.522-22.16,11.522c-16.103,0-27.256-12.04-27.256-26.96
         c0-14.922,11.375-27.036,27.256-27.036c7.46,0,14.108,2.808,18.91,7.461l-5.983,6.426c-3.324-2.954-7.756-4.949-12.927-4.949
         c-3.472,0-6.5,0.812-9.085,2.29L49.86,204.88z M27.701,207.465c3.398,0,6.426-0.812,9.011-2.364l-24.67-24.596
-        c-1.33,2.659-1.994,5.687-1.994,8.938c0,9.972,6.943,18.097,17.653,18.097V207.465z"/>
-    <path fill="#FFFFFF" d="M95.658,163.442V195.5c0,11.301-6.647,20.756-20.386,20.756c-13.444,0-20.461-9.455-20.461-20.756v-32.058
-        h20.387v9.085H64.34V195.5c0,6.279,3.472,11.596,10.933,11.596c7.386,0,10.858-5.317,10.858-11.596v-32.058H95.658z"/>
-    <path fill="#FFFFFF" d="M145.298,182.942c0,10.711-8.126,19.426-20.83,19.426h-8.865v12.779h-9.529v-21.864h14.183l-19.722-29.841
+        c-1.33,2.659-1.994,5.687-1.994,8.938c0,9.972,6.943,18.097,17.653,18.097V207.465z"/><path fill="#FFFFFF" d="M95.658,163.442V195.5c0,11.301-6.647,20.756-20.386,20.756c-13.444,0-20.461-9.455-20.461-20.756v-32.058
+        h20.387v9.085H64.34V195.5c0,6.279,3.472,11.596,10.933,11.596c7.386,0,10.858-5.317,10.858-11.596v-32.058H95.658z"/><path fill="#FFFFFF" d="M145.298,182.942c0,10.711-8.126,19.426-20.83,19.426h-8.865v12.779h-9.529v-21.864h14.183l-19.722-29.841
         h23.933C137.616,163.442,145.298,172.158,145.298,182.942z M135.77,182.942c0-5.762-4.063-10.415-11.301-10.415h-6.501
-        l12.705,19.352C134.069,190.107,135.77,186.783,135.77,182.942z"/>
-</g>
-</svg>
-
-
-<!-- ********** GOAL ************* -->
-<div id="goal" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); text-align: center;">
-    <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">
-        GOOOOAAL!!!
+        l12.705,19.352C134.069,190.107,135.77,186.783,135.77,182.942z"/></g>
+    </svg>
+    <!-- ********** GOAL ************* -->
+    <div id="goal" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.9); text-align: center;">
+        <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">GOOOOAAL!!!</div>
     </div>
-</div>
-
-<!-- ********** THANKS ************* -->
-<div id="thanks" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); text-align: center;">
-    <div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">
-        THANK YOU :)
+    <!-- ********** THANKS ************* -->
+    <div id="thanks" style="display: none; position: absolute; z-index: 11; width: 100%; height: 100%; background: rgba(255, 255, 255, 0.8); text-align: center;"><div style="display: table-cell; vertical-align: middle; font-family: helvetica, arial, san-serif">THANK YOU :)</div>
     </div>
-</div>
-
-<!-- ********** TOTALISER ************* -->
-<div id="totaliser">
-    <div class="loader"></div>
-    <p><span id="totalRaised"></span></p>
-</div>
-
-<!-- ********** DONATE ************* -->
-<div id="donate">
-    <a href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=574206">donate</a>
-</div>
-
-<!-- ********** PHYSICS ************* -->
-<script>
+    <!-- ********** DONATE ************* -->
+    <div id="donate"><a href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=574206">donate</a></div>
+    <!-- ********** PHYSICS ************* -->
+    <script>
     function getQueryVariable(variable) {
        var query = window.location.search.substring(1);
        var vars = query.split("&");
@@ -136,7 +86,6 @@
        return(false);
     }
     var donated = getQueryVariable('donated');
-
     if(donated && donated === 'true'){
         //alert('thanks for donating');
         document.getElementById('thanks').style.display = "table";
@@ -144,382 +93,332 @@
             $('#thanks').css('display', 'none');
         }, 3000)
     }
-
     // prevent overscrolling on touch devices
     document.ontouchmove = function(event){
         event.preventDefault();
     }
+    Physics(function (world) {
+        // bounds of the window
+        var viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight),
+            edgeBounce,
+            renderer,
+            width = window.innerWidth,
+            height = window.innerHeight;
 
-    function setUp(){
-        Physics(function (world) {
-            // bounds of the window
-            var viewportBounds = Physics.aabb(0, 0, window.innerWidth, window.innerHeight),
-                edgeBounce,
-                renderer,
-                width = window.innerWidth,
-                height = window.innerHeight;
-
-            // create a renderer
-            renderer = Physics.renderer('canvas', {
-                el: 'viewport'
-            });
-
-            // add the renderer
-            world.add(renderer);
-            // render on each step
-            world.on('step', function () {
-                world.render();
-            });
-
-            // constrain objects to these bounds
-            edgeBounce = Physics.behavior('edge-collision-detection', {
-                aabb: viewportBounds
-                ,restitution: 0.4
-                ,cof: 0.3
-            });
-
-            var resizeId;
-
-            // resize events
-            window.addEventListener('resize', function () {
-                //clearTimeout(resizeId);
-                //resizeId = setTimeout(doneResizing, 750);
-                // // as of 0.7.0 the renderer will auto resize... so we just take the values from the renderer
-                viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
-                // // update the boundaries
-                edgeBounce.setAABB(viewportBounds);
-            }, true);
-
-            // function doneResizing(){
-            //     setUp();
-            // }
-
-            var iconWidth = renderer.width > 600 ? 48 : 24;
-            var ballWidth = renderer.width > 600 ? 30 : 15;
-            // /****************** GOALS *******************/
-
-            var goal1 = Physics.body('rectangle', {
-                treatment: 'static'
-                ,x: renderer.width > 600 ? 0 : renderer.width/2
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : 0
-                ,vx: 0.3
-                ,width: renderer.width > 600 ? 10 : 150
-                ,height: renderer.width > 600 ? 150 : 10
-                ,styles: {
-                    fillStyle: '#fff'
-                }
-                ,label: "goal1"
-            });
-
-            var goal2 = Physics.body('rectangle', {
-                treatment: 'static'
-                ,x: renderer.width > 600 ? renderer.width : renderer.width/2
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height
-                ,vx: 0
-                ,width: renderer.width > 600 ? 10 : 150
-                ,height: renderer.width > 600 ? 150 : 10
-                ,styles: {
-                    fillStyle: '#fff'
-                }
-                ,label: "goal2"
-            });
-            /* *************************************************** */
-
-
-
-            // /****************** BALL AND PLAYERS *******************/
-
-            var ball = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.5 : 0
-                ,y: renderer.width > 600 ? renderer.height : renderer.height/2
-                ,vx: renderer.width > 600 ? 0 : 0.5
-                ,vy: renderer.width > 600 ? -2 : 0
-                ,radius: ballWidth
-                ,styles: {
-                    fillStyle: '#cb4b16'
-                }
-                ,mass: 1
-                ,restitution: 0.5
-                ,label: "ball"
-            });
-
-             var player1 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player2 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player3 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player4 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player5 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player6 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player7 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            var player8 = Physics.body('circle', {
-                x: renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
-                ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
-                ,radius: iconWidth
-                ,styles: {
-                    fillStyle: '#000'
-                }
-                ,mass: 1
-                ,restitution: 0.1,
-            });
-
-            if (renderer.width > 600) {
-                ball.view = new Image();
-                ball.view.src = 'ball.png';
-                player1.view = new Image();
-                player1.view.src = 'balls/fabric.png';
-                player2.view = new Image();
-                player2.view.src = 'balls/r&s.png';
-                player3.view = new Image();
-                player3.view.src = 'balls/domino.png';
-                player4.view = new Image();
-                player4.view.src = 'balls/ninja.png';
-                player5.view = new Image();
-                player5.view.src = 'balls/heavenly.png';
-                player6.view = new Image();
-                player6.view.src = 'balls/bella-union.png';
-                player7.view = new Image();
-                player7.view.src = 'balls/hospital.png';
-                player8.view = new Image();
-                player8.view.src = 'balls/4AD.png';
-            } else {
-                ball.view = new Image();
-                ball.view.src = 'balls.png';
-                player1.view = new Image();
-                player1.view.src = 'balls/fabrics.png';
-                player2.view = new Image();
-                player2.view.src = 'balls/r&ss.png';
-                player3.view = new Image();
-                player3.view.src = 'balls/dominos.png';
-                player4.view = new Image();
-                player4.view.src = 'balls/ninjas.png';
-                player5.view = new Image();
-                player5.view.src = 'balls/heavenlys.png';
-                player6.view = new Image();
-                player6.view.src = 'balls/bella-unions.png';
-                player7.view = new Image();
-                player7.view.src = 'balls/hospitals.png';
-                player8.view = new Image();
-                player8.view.src = 'balls/4ADs.png';
-            }
-            
-            var players = [player1, player2, player3, player4, player5, player6, player7, player8];
-            world.add(players);
-            world.add([goal1, goal2]);
-
-            window.setTimeout(function(){ world.add(ball); }, 1000);
-            // add things to the world
-            world.add([
-                edgeBounce
-            ]);
-
-            var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
-            world.add(tch);
-
-            var accel = Physics.behavior('constant-acceleration').applyTo( ball );
-            world.add(accel);
-
-            var resp = Physics.behavior('body-impulse-response').applyTo( players );
-            world.add(resp);
-
-            world.add( Physics.behavior('body-collision-detection') );
-
-            world.add( Physics.behavior('sweep-prune') );
-
-            // subscribe to ticker to advance the simulation
-            Physics.util.ticker.on(function( time ) {
-                world.step( time );
-            });
-
-
-            // query to find a collision between a body with label "bullet" and a body with label "box"
-            var query = Physics.query({
-                $or: [
-                    { bodyA: { label: 'ball' }, bodyB: { label: 'goal1' } }
-                    ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal1' } }
-                    ,{ bodyA: { label: 'ball' }, bodyB: { label: 'goal2' } }
-                    ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal2' } }
-                ]
-            });
-
-            // monitor collisions
-            world.on('collisions:detected', function( data, e ){
-                // find the first collision that matches the query
-                //console.log(data.collisions);
-                var found = Physics.util.find( data.collisions, query );
-                if ( found ){
-                    // SOMEONE SCORED A GOAL!!!!!
-                    // move ball back to centre spot
-
-                    //a.play();
-
-                    ball.state.pos.x = renderer.width * 0.5;
-                    ball.state.pos.y = renderer.height * 0.5;
-                    ball.state.vel.set(0, 0);
-
-                    players[0].state.pos.x = renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
-                    players[0].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
-                    players[0].state.vel.set(0, 0);
-                    players[1].state.pos.x = renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
-                    players[1].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
-                    players[1].state.vel.set(0, 0);
-                    players[2].state.pos.x = renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
-                    players[2].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
-                    players[2].state.vel.set(0, 0);
-                    players[3].state.pos.x = renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
-                    players[3].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
-                    players[3].state.vel.set(0, 0);
-                    players[4].state.pos.x = renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
-                    players[4].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
-                    players[4].state.vel.set(0, 0);
-                    players[5].state.pos.x = renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
-                    players[5].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
-                    players[5].state.vel.set(0, 0);
-                    players[6].state.pos.x = renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
-                    players[6].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
-                    players[6].state.vel.set(0, 0);
-                    players[7].state.pos.x = renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
-                    players[7].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
-                    players[7].state.vel.set(0, 0);
-
-                    $('#goal').css('display', 'table');
-                    window.setTimeout(function(){
-                        $('#goal').css('display', 'none');
-                    }, 3000)
-                }
-            });
+        // create a renderer
+        renderer = Physics.renderer('canvas', {
+            el: 'viewport'
         });
-}
-setUp();
-</script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
- <script>
+        // add the renderer
+        world.add(renderer);
+        // render on each step
+        world.on('step', function () {
+            world.render();
+        });
+
+        // constrain objects to these bounds
+        edgeBounce = Physics.behavior('edge-collision-detection', {
+            aabb: viewportBounds
+            ,restitution: 0.4
+            ,cof: 0.3
+        });
+
+        var resizeId;
+
+        // resize events
+        window.addEventListener('resize', function () {
+            viewportBounds = Physics.aabb(0, 0, renderer.width, renderer.height);
+            edgeBounce.setAABB(viewportBounds);
+        }, true);
+
+        var iconWidth = renderer.width > 600 ? 48 : 24;
+        var ballWidth = renderer.width > 600 ? 30 : 15;
+        // /****************** GOALS *******************/
+
+        var goal1 = Physics.body('rectangle', {
+            treatment: 'static'
+            ,x: renderer.width > 600 ? 0 : renderer.width/2
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : 0
+            ,vx: 0.3
+            ,width: renderer.width > 600 ? 10 : 150
+            ,height: renderer.width > 600 ? 150 : 10
+            ,styles: {
+                fillStyle: '#fff'
+            }
+            ,label: "goal1"
+        });
+
+        var goal2 = Physics.body('rectangle', {
+            treatment: 'static'
+            ,x: renderer.width > 600 ? renderer.width : renderer.width/2
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height
+            ,vx: 0
+            ,width: renderer.width > 600 ? 10 : 150
+            ,height: renderer.width > 600 ? 150 : 10
+            ,styles: {
+                fillStyle: '#fff'
+            }
+            ,label: "goal2"
+        });
+        // /****************** BALL AND PLAYERS *******************/
+        var ball = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.5 : 0
+            ,y: renderer.width > 600 ? renderer.height : renderer.height/2
+            ,vx: renderer.width > 600 ? 0 : 0.5
+            ,vy: renderer.width > 600 ? -2 : 0
+            ,radius: ballWidth
+            ,styles: {
+                fillStyle: '#cb4b16'
+            }
+            ,mass: 1
+            ,restitution: 0.5
+            ,label: "ball"
+        });
+
+         var player1 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player2 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player3 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player4 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player5 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player6 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player7 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        var player8 = Physics.body('circle', {
+            x: renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
+            ,y: renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7
+            ,radius: iconWidth
+            ,styles: {
+                fillStyle: '#000'
+            }
+            ,mass: 1
+            ,restitution: 0.1,
+        });
+
+        if (renderer.width > 600) {
+            ball.view = new Image();
+            ball.view.src = 'ball.png';
+            player1.view = new Image();
+            player1.view.src = 'balls/fabric.png';
+            player2.view = new Image();
+            player2.view.src = 'balls/r&s.png';
+            player3.view = new Image();
+            player3.view.src = 'balls/domino.png';
+            player4.view = new Image();
+            player4.view.src = 'balls/ninja.png';
+            player5.view = new Image();
+            player5.view.src = 'balls/heavenly.png';
+            player6.view = new Image();
+            player6.view.src = 'balls/bella-union.png';
+            player7.view = new Image();
+            player7.view.src = 'balls/hospital.png';
+            player8.view = new Image();
+            player8.view.src = 'balls/4AD.png';
+        } else {
+            ball.view = new Image();
+            ball.view.src = 'balls.png';
+            player1.view = new Image();
+            player1.view.src = 'balls/fabrics.png';
+            player2.view = new Image();
+            player2.view.src = 'balls/r&ss.png';
+            player3.view = new Image();
+            player3.view.src = 'balls/dominos.png';
+            player4.view = new Image();
+            player4.view.src = 'balls/ninjas.png';
+            player5.view = new Image();
+            player5.view.src = 'balls/heavenlys.png';
+            player6.view = new Image();
+            player6.view.src = 'balls/bella-unions.png';
+            player7.view = new Image();
+            player7.view.src = 'balls/hospitals.png';
+            player8.view = new Image();
+            player8.view.src = 'balls/4ADs.png';
+        }
+        
+        var players = [player1, player2, player3, player4, player5, player6, player7, player8];
+        world.add(players);
+        world.add([goal1, goal2]);
+
+        window.setTimeout(function(){ world.add(ball); }, 1000);
+        // add things to the world
+        world.add([
+            edgeBounce
+        ]);
+
+        var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
+        world.add(tch);
+        var accel = Physics.behavior('constant-acceleration').applyTo( ball );
+        world.add(accel);
+        var resp = Physics.behavior('body-impulse-response').applyTo( players );
+        world.add(resp);
+        world.add( Physics.behavior('body-collision-detection') );
+        world.add( Physics.behavior('sweep-prune') );
+        // subscribe to ticker to advance the simulation
+        Physics.util.ticker.on(function( time ) {
+            world.step( time );
+        });
+        // query to find a collision between a body with label "bullet" and a body with label "box"
+        var query = Physics.query({
+            $or: [
+                { bodyA: { label: 'ball' }, bodyB: { label: 'goal1' } }
+                ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal1' } }
+                ,{ bodyA: { label: 'ball' }, bodyB: { label: 'goal2' } }
+                ,{ bodyB: { label: 'ball' }, bodyA: { label: 'goal2' } }
+            ]
+        });
+
+        // monitor collisions
+        world.on('collisions:detected', function( data, e ){
+            var found = Physics.util.find( data.collisions, query );
+            if ( found ){
+                // SOMEONE SCORED A GOAL!!!!!
+                //a.play();
+                ball.state.pos.x = renderer.width * 0.5;
+                ball.state.pos.y = renderer.height * 0.5;
+                ball.state.vel.set(0, 0);
+
+                players[0].state.pos.x = renderer.width > 600 ? renderer.width * 0.9 : renderer.width * 0.8
+                players[0].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
+                players[0].state.vel.set(0, 0);
+                players[1].state.pos.x = renderer.width > 600 ? renderer.width * 0.8 : renderer.width * 0.6
+                players[1].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
+                players[1].state.vel.set(0, 0);
+                players[2].state.pos.x = renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.4
+                players[2].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
+                players[2].state.vel.set(0, 0);
+                players[3].state.pos.x = renderer.width > 600 ? renderer.width * 0.6 : renderer.width * 0.2
+                players[3].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.3;
+                players[3].state.vel.set(0, 0);
+                players[4].state.pos.x = renderer.width > 600 ? renderer.width * 0.4 : renderer.width * 0.8
+                players[4].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
+                players[4].state.vel.set(0, 0);
+                players[5].state.pos.x = renderer.width > 600 ? renderer.width * 0.3 : renderer.width * 0.6
+                players[5].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
+                players[5].state.vel.set(0, 0);
+                players[6].state.pos.x = renderer.width > 600 ? renderer.width * 0.2 : renderer.width * 0.4
+                players[6].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
+                players[6].state.vel.set(0, 0);
+                players[7].state.pos.x = renderer.width > 600 ? renderer.width * 0.1 : renderer.width * 0.2
+                players[7].state.pos.y = renderer.width > 600 ? renderer.height * 0.5 : renderer.height * 0.7;
+                players[7].state.vel.set(0, 0);
+
+                $('#goal').css('display', 'table');
+                window.setTimeout(function(){
+                    $('#goal').css('display', 'none');
+                }, 3000)
+            }
+        });
+    });
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>
     var a;
     (function($) {
         $.fn.rainbow = function(options) {
             this.each(function() {
-            
                 options.originalText = $(this).html();
                 options.iterations = 0;
                 if (!options.pauseLength) {
                     options.pauseLength = options.animateInterval;
                 }
                 $(this).data('options',options);
-                
                 if (options.pad) {
-                
                     for (x = 0; x < options.originalText.length; x++) {
                         options.colors.unshift(options.colors[options.colors.length-1]);
                     }
                 }
-                
                 $.fn.rainbow.render(this);      
-                
             });
         }
-            
         $.fn.rainbow.render = function(obj) {
-        
                 var options = $(obj).data('options');
                 var chars = options.originalText.split('');
-
                 options.iterations++;
-                    
                 var newstr = '';
                 var counter = 0;
                 for (var x in chars) {
-                
                     if (chars[x]!=' ') {
                         newstr = newstr + '<span style="color: ' + options.colors[counter] + ';">' + chars[x] + '</span>';
                         counter++;
                     } else {
                         newstr = newstr + ' ';
-                    
                     }
-                
-                
                     if (counter >= options.colors.length) {
                         counter = 0;
                     }
                 }
                 $(obj).html(newstr);
-        
                 var pause = (options.iterations % options.colors.length == 0);
-                
-
-
-                if (options.animate) {
-                
-                    (
+                if (options.animate) {(
                         function(obj,interval) {
                             var options = $(obj).data('options');
                             var i = setTimeout(function() {
@@ -529,23 +428,15 @@ setUp();
                             $(obj).data('options',options);
                         }
                     )(obj,pause?options.pauseLength:options.animateInterval);
-                }   
-
-                
+                }
         }
-        
-        
         $.fn.rainbow.shift = function(obj) {
-        
             var options = $(obj).data('options');
             var color = options.colors.pop();
             options.colors.unshift(color);
             $.fn.rainbow.render(obj);
-        
         }
-        
     })(jQuery);
-
     $(function() {
         $('#goal div').rainbow({ 
                 colors: [
@@ -562,7 +453,6 @@ setUp();
                 pad: false,
                 pauseLength: 100,
             });
-
         if (donated && donated === 'true') {
             $('#thanks div').rainbow({ 
                 colors: [
@@ -580,15 +470,6 @@ setUp();
                 pauseLength: 100,
             });
         }
-
-        $.ajax({
-            url: "http://api.jo.je/virginmoneygiving/jsonp.php?d=574206&callback=?",
-            dataType: 'json',
-            success: function(data) {
-                $('.loader').remove();
-                $('#totalRaised').html('£' + data.money_total + ' <br />raised');
-            }
-        });
     });
 </script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/mobile-detect/1.0.0/mobile-detect.min.js"></script>
@@ -597,7 +478,6 @@ setUp();
       SC.initialize({
         client_id: "d1cd63a3738d56d1626b58d26cb41069"
       });
-
       function loopSound(sound) {
         sound.play({
             onfinish: function() {
@@ -605,7 +485,6 @@ setUp();
             }
         });
       }
-
       var md = new MobileDetect(window.navigator.userAgent);
       if(!md.mobile()) {
       SC.get("/tracks/68280948", function(track){
@@ -615,7 +494,6 @@ setUp();
       });
       }
     </script>
-
     <!-- <audio src="AIRHORN.mp3" type="audio/mp3" preload="auto"></audio> -->
     <script>
     //     a = document.getElementsByTagName("audio")[0];
