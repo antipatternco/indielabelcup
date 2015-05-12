@@ -507,7 +507,7 @@
             url: "http://api.jo.je/virginmoneygiving/jsonp.php?d=574206&callback=?",
             dataType: 'json',
             success: function(data) {
-                var totalTotal = parseFloat(data.money_total).toFixed(2) + parseFloat(data.money_gift_aid).toFixed(2);
+                var totalTotal = data.money_gift_aid + data.money_total;
                 $('.loader').remove();
                 $('#totalRaised').html('£' + totalTotal + ' <br />raised');
             }
