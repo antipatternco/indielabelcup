@@ -338,7 +338,7 @@
         world.add(players);
         world.add([ball, goal1, goal2, edgeBounce]);
 
-        var showhand = window.setTimeout( function(){ world.add(hand); window.setTimeout(function(){ world.remove(hand) }, 3000)}, 500 );
+        var showhand = window.setTimeout( function(){ world.add(hand); window.setTimeout(function(){ world.remove(hand) }, 3000)}, 5000 );
 
         var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
         world.add(tch);
