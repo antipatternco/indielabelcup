@@ -178,16 +178,16 @@
         });
         // /****************** BALL AND PLAYERS *******************/
         var ball = Physics.body('circle', {
-            x: renderer.width > 600 ? renderer.width * 0.5 : 0
-            ,y: renderer.width > 600 ? renderer.height : renderer.height/2
-            ,vx: renderer.width > 600 ? 0 : 0.5
-            ,vy: renderer.width > 600 ? -2 : 0
+            x: renderer.width * 0.5
+            ,y: renderer.height * 0.5
+            ,vx: 0
+            ,vy: 0
             ,radius: ballWidth
             ,styles: {
                 fillStyle: '#cb4b16'
             }
-            ,mass: 1
-            ,restitution: 0.8
+            ,mass: 0.2
+            ,restitution: 1
             ,label: "ball"
         });
 
@@ -280,14 +280,14 @@
         });
 
         var hand = Physics.body('circle', {
-            x: renderer.width > 600 ? renderer.width * 0.7 : renderer.width * 0.65
-            ,y: renderer.width > 600 ? renderer.height * 0.7 : renderer.height * 0.2
+            x: renderer.width > 600 ? renderer.width * 0.65 : renderer.width * 0.7
+            ,y: renderer.width > 600 ? renderer.height * 0.8 : renderer.height * 0.15
             ,radius: iconWidth
-            ,angle: renderer.width > 600 ? -0.5 : -2.5
+            ,angle: renderer.width > 600 ? 0 : -2.5
             ,mass: 1
-            ,vx: renderer.width > 600 ? -0.2 : -0.15
-            ,vy: renderer.width > 600 ? -0.2 : 0.2
-            ,restitution: 1
+            ,vx: renderer.width > 600 ? 0 : -0.05
+            ,vy: renderer.width > 600 ? -0.15 : 0.1
+            ,restitution: 5
         });
 
         if (renderer.width > 600) {
@@ -336,11 +336,9 @@
         
         var players = [player1, player2, player3, player4, player5, player6, player7, player8];
         world.add(players);
-        world.add([goal1, goal2, edgeBounce]);
+        world.add([ball, goal1, goal2, edgeBounce]);
 
-        window.setTimeout(function(){ world.add(ball); }, 1000);
-
-        var showhand = window.setTimeout( function(){ world.add(hand); window.setTimeout(function(){ world.remove(hand) }, 1000)}, 7500 );
+        var showhand = window.setTimeout( function(){ world.add(hand); window.setTimeout(function(){ world.remove(hand) }, 3000)}, 500 );
 
         var tch = Physics.behavior('interactive', { el: renderer.container }).applyTo( players );
         world.add(tch);
@@ -366,6 +364,10 @@
 
         world.on('interact:grab', function( data, e ){
             window.clearTimeout(showhand);
+        });
+
+        world.on('collisions:detected', function( data, e ){
+            hand.view.src = '';
         });
 
         // monitor collisions
