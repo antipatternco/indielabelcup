@@ -366,10 +366,6 @@
             window.clearTimeout(showhand);
         });
 
-        world.on('collisions:detected', function( data, e ){
-            hand.view.src = '';
-        });
-
         // monitor collisions
         world.on('collisions:detected', function( data, e ){
             var found = Physics.util.find( data.collisions, query );
