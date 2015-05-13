@@ -539,13 +539,6 @@
     <script>
     a = document.getElementsByTagName("audio")[0];
 
-    var ctx = null;
-    if (typeof AudioContext !== 'undefined') {
-      ctx = new AudioContext();
-    } else if (typeof webkitAudioContext !== 'undefined') {
-      ctx = new webkitAudioContext();
-    }
-    
     (function _enableiOSAudio() {
       var self = this;
       // only run this on iOS if audio isn't already eanbled
