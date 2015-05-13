@@ -538,6 +538,32 @@
     <audio src="AIRHORN.mp3" type="audio/mp3" preload="auto"></audio>
     <script>
     a = document.getElementsByTagName("audio")[0];
+
+    (function _enableiOSAudio() {
+      var self = this;
+      // only run this on iOS if audio isn't already eanbled
+      if (self._iOSEnabled || !/iPhone|iPad|iPod/i.test(navigator.userAgent)) {return;}
+      self._iOSEnabled = false;
+          var unlock = function() {
+            var buffer = ctx.createBuffer(1, 1, 22050);
+            var source = ctx.createBufferSource();
+            source.buffer = buffer;
+            source.connect(ctx.destination);
+            if (typeof source.start === 'undefined') {source.noteOn(0);} else {source.start(0);}
+            // setup a timeout to check that we are unlocked on the next event loop
+            setTimeout(function() {
+              if ((source.playbackState === source.PLAYING_STATE || source.playbackState === source.FINISHED_STATE)) {
+                // update the unlocked state and prevent this check from happening again
+                self._iOSEnabled = true;
+                self.iOSAutoEnable = false;
+                // remove the touch start listener
+                window.removeEventListener('touchstart', unlock, false);
+              }
+            }, 0);
+          };
+      window.addEventListener('touchstart', unlock, false);
+      return self;
+    })();
     </script>
   </body>
 </html>
