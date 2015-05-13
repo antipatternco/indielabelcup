@@ -545,11 +545,11 @@
     } else if (typeof webkitAudioContext !== 'undefined') {
       ctx = new webkitAudioContext();
     }
-
+    
     (function _enableiOSAudio() {
       var self = this;
       // only run this on iOS if audio isn't already eanbled
-      if (ctx &&  (self._iOSEnabled || !/iPhone|iPad|iPod/i.test(navigator.userAgent))) {return;}
+      if (self._iOSEnabled || !/iPhone|iPad|iPod/i.test(navigator.userAgent)) {return;}
       self._iOSEnabled = false;
           var unlock = function() {
             var buffer = ctx.createBuffer(1, 1, 22050);
