@@ -42,7 +42,11 @@
       .loader:after {left: 1.5em;}
       @-webkit-keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;}40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
       @keyframes load1 {0%,80%,100% {box-shadow: 0 0 #FFF;height: 4em;} 40% {box-shadow: 0 -2em #ffffff;height: 5em;}}
+      #siteby {z-index: 10;position:absolute; bottom: 8px; right: 8px; color: #fff; font-size: 12px; font-family: helvetica, arial, sans-serif;}
+      #siteby a { color: #fff;}
+      #siteby a:hover { cursor: pointer;}
       @media (max-width: 600px) {body {background-image: url(pitchv.png);}#thanks div,#goal div {font-size: 50px;}#about {position: absolute; bottom: 16px; left: 16px; width:90%;}#donate {bottom: 96px; left: 16px;}svg {width: 25%;}#about {background: rgba(39, 120, 43, 0.5);} #crisis {bottom: 96px; right: 16px;} #logo { left: 8px; top: 8px;} #crisis {bottom: 96px; left: auto;right: 8px;} #totaliser { top: 8px; right: 8px;} .loader {font-size: 6px;} .loader,.loader:before,.loader:after {width: 0.5em; height:0.5em;} .loader:after {left: 1em;} .loader:before {left: -1em;} .loader { left: -1em;} #donate a{background: #27782b;}}
+
     </style>
   </head>
   <body>
@@ -89,6 +93,9 @@
     </div>
     <!-- ********** DONATE ************* -->
     <div id="donate"><a href="https://uk.virginmoneygiving.com/fundraiser-web/donate/makeDonationForFundraiserDisplay.action?fundraiserActivityId=574206">donate</a></div>
+
+    <p id="siteby">site by <a href="http://antipattern.co">antipattern</a></p>
+
     <!-- ********** PHYSICS ************* -->
     <script>
     function getQueryVariable(variable) {
